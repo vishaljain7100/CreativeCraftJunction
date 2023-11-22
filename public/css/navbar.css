@@ -1,0 +1,40 @@
+.navbar {
+    background-color: #005bda !important;
+}
+
+.collapse {
+    justify-content: space-between;
+}
+
+.container-fluid a {
+    margin: 0;
+}
+
+.nav-item .nav-link {
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #ffd700;
+    text-decoration: 2px underline #ffd700;
+}
+
+.d-flex .btn:hover {
+    color: white;
+}
+
+.btn i {
+    font-size: x-large;
+}
+
+#logo {
+    height: 2rem;
+}
+
+@media (min-width:320px) and (max-width : 625px) {
+    .navbar {
+        justify-content: center !important;
+    }
+}
