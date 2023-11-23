@@ -5,6 +5,8 @@ const path = require("path")
 const ejsMate = require("ejs-mate")
 const ExpressError = require("./utility/ExpressError")
 const wrapAsync = require("./utility/wrapAsync")
+const mongoose = require("mongoose")
+const dotenv = require("dotenv")
 const log = console.log
 
 app.use(express.static(path.join(__dirname, "public")))
@@ -13,6 +15,17 @@ app.use(express.static(path.join(__dirname, "public/image")))
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.engine("ejs", ejsMate)
+dotenv.config()
+
+const db_url = process.env.DATABASE_URL
+
+main()
+.then(res => console.log("Mongodb is connected"))
+.catch(err => console.log(err))
+
+async function main() {
+    await mongoose.connect(db_url)
+}
 
 app.get('/', (req, res) => {
     res.render("index.ejs")
