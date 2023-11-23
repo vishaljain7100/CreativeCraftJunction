@@ -1,5 +1,17 @@
 <body>
     <!-- navbar file -->
     <% layout("/layouts/boilerplate.ejs") %>
-        <h1>Wellcome to Home page</h1>
+        <% for(let i=0; i<posts.length; i++){ %>
+            <div class="card" style="width: 18rem;">
+                <img src="<%= posts[i].image %>" class="card-img-top" alt="img">
+                <div class="card-body">
+                    <h5 class="card-text">
+                        <% posts[i].price %>
+                    </h5>
+                    <p class="card-text">
+                        <% posts[i].productId %>
+                    </p>
+                </div>
+            </div>
+            <% } %>
 </body>
