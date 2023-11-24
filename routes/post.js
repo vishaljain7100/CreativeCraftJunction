@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const post = require("../modules/post")
+const post = require("../module/post")
 const wrapAsync = require("../utility/wrapAsync")
 
 // Main page

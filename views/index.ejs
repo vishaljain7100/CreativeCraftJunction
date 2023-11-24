@@ -1,17 +1,23 @@
 <body>
     <!-- navbar file -->
     <% layout("/layouts/boilerplate.ejs") %>
-        <% for(let i=0; i<posts.length; i++){ %>
-            <div class="card" style="width: 18rem;">
-                <img src="<%= posts[i].image %>" class="card-img-top" alt="img">
-                <div class="card-body">
-                    <h5 class="card-text">
-                        <% posts[i].price %>
-                    </h5>
-                    <p class="card-text">
-                        <% posts[i].productId %>
-                    </p>
+        <div class="Postcontainer">
+            <% for(let i=0; i<posts.length; i++){ %>
+                <div class="card">
+                    <div class="picture">
+                        <img src="<%= posts[i].image %>" class="card-img-top" alt="img">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-text">
+                            <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/rupee.png"
+                                alt="rupee" />
+                            <%= posts[i].price %>
+                        </h5>
+                        <p class="card-text">
+                            ProductId : <%= posts[i].productId %>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <% } %>
+                <% } %>
+        </div>
 </body>

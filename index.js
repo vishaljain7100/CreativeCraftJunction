@@ -10,7 +10,7 @@ const dotenv = require("dotenv")
 const log = console.log
 const data = require("./init/data")
 const postRoutes = require("./routes/post")
-const post = require("./modules/post")
+const post = require("./module/post")
 
 app.use(express.static(path.join(__dirname, "public")))
 app.use(express.static(path.join(__dirname, "public/css")))

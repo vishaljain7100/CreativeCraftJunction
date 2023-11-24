@@ -1,0 +1,33 @@
+.main {
+    padding-top: 5rem;
+}
+
+.Postcontainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 13rem));
+    justify-content: space-evenly;
+    grid-gap: 20px;
+    padding: 10px;
+
+}
+
+.picture {
+    height: 18rem;
+}
+
+.picture img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Media query for phones */
+@media screen and (max-width: 767px) {
+    .Postcontainer {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+    }
+
+    .picture {
+        height: 15rem;
+    }
+}
