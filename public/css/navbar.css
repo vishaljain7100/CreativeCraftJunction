@@ -1,5 +1,8 @@
 .navbar {
     background-color: #005bda !important;
+    position: fixed;
+    z-index: 999;
+    width: 100vw;
 }
 
 .collapse {
