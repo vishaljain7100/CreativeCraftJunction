@@ -8,9 +8,13 @@ const wrapAsync = require("./utility/wrapAsync")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const log = console.log
-const data = require("./init/data")
 const postRoutes = require("./routes/post")
+const data = require("./init/data")
 const post = require("./module/post")
+const category = require("./module/category")
+const categoryData = require("./init/categoryData")
+const AdminRoutes = require("./routes/Admin")
+
 
 app.use(express.static(path.join(__dirname, "public")))
 app.use(express.static(path.join(__dirname, "public/css")))
@@ -31,6 +35,7 @@ async function main() {
 }
 
 app.use('/', postRoutes)
+app.use('/Admin', AdminRoutes)
 
 app.all("*", wrapAsync(async (req, res, next) => {
     throw new ExpressError(404, "Page not found!")
@@ -48,3 +53,6 @@ app.listen(PORT, () => {
 
 // post.insertMany(data).then(res => console.log(res)).catch(err => console.log(err))
 // post.deleteMany({}).then(res => log(res)).catch(err => log(err))
+
+// category.deleteMany({}).then(res => log(res))
+// category.insertMany(categoryData).then(res => log(res))

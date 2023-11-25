@@ -420,244 +420,244 @@ const data = [
         image: 'https://lh3.googleusercontent.com/pw/ADCreHewgNy3Yt7oJtAHt6LfUgR7HS2HAAr2acDbCCVEK962FY'
     },
     {
-        "categoryId": 8,
-        "productId": "801",
-        "price": 8.99,
-        "image": "https://m.media-amazon.com/images/I/51PPWvDJFkS.jpg"
+        categoryI: 8,
+        productId: "801",
+        price: 8.99,
+        image: "https://m.media-amazon.com/images/I/51PPWvDJFkS.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "802",
-        "price": 80.8,
-        "image": "https://m.media-amazon.com/images/I/51zCZ3cqbOL._SX300_SY300_QL70_FMwebp_.jpg"
+        categoryI: 8,
+        productId: "802",
+        price: 80.8,
+        image: "https://m.media-amazon.com/images/I/51zCZ3cqbOL._SX300_SY300_QL70_FMwebp_.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "803",
-        "price": 88.99,
-        "image": "https://m.media-amazon.com/images/I/61LFo-wqJmL._SX300_SY300_QL70_FMwebp_.jpg"
+        categoryI: 8,
+        productId: "803",
+        price: 88.99,
+        image: "https://m.media-amazon.com/images/I/61LFo-wqJmL._SX300_SY300_QL70_FMwebp_.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "804",
-        "price": 8.98,
-        "image": "https://m.media-amazon.com/images/I/91K-p5qJKCL._SX679_.jpg"
+        categoryI: 8,
+        productId: "804",
+        price: 8.98,
+        image: "https://m.media-amazon.com/images/I/91K-p5qJKCL._SX679_.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "805",
-        "price": 87.8,
-        "image": "https://m.media-amazon.com/images/I/51Ome3Oa9lL._SY300_SX300_QL70_FMwebp_.jpg"
+        categoryI: 8,
+        productId: "805",
+        price: 87.8,
+        image: "https://m.media-amazon.com/images/I/51Ome3Oa9lL._SY300_SX300_QL70_FMwebp_.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "806",
-        "price": 81.99,
-        "image": "https://m.media-amazon.com/images/I/51Ome3Oa9lL._SY300_SX300_QL70_FMwebp_.jpg"
+        categoryI: 8,
+        productId: "806",
+        price: 81.99,
+        image: "https://m.media-amazon.com/images/I/51Ome3Oa9lL._SY300_SX300_QL70_FMwebp_.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "807",
-        "price": 83.8,
-        "image": "https://m.media-amazon.com/images/I/61LFo-wqJmL._SX300_SY300_QL70_FMwebp_.jpg"
+        categoryI: 8,
+        productId: "807",
+        price: 83.8,
+        image: "https://m.media-amazon.com/images/I/61LFo-wqJmL._SX300_SY300_QL70_FMwebp_.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "808",
-        "price": 86.78,
-        "image": "https://m.media-amazon.com/images/I/91K-p5qJKCL._SX679_.jpg"
+        categoryI: 8,
+        productId: "808",
+        price: 86.78,
+        image: "https://m.media-amazon.com/images/I/91K-p5qJKCL._SX679_.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "809",
-        "price": 88.8,
-        "image": "https://m.media-amazon.com/images/I/51Ome3Oa9lL._SY300_SX300_QL70_FMwebp_.jpg"
+        categoryI: 8,
+        productId: "809",
+        price: 88.8,
+        image: "https://m.media-amazon.com/images/I/51Ome3Oa9lL._SY300_SX300_QL70_FMwebp_.jpg"
     },
     {
-        "categoryId": 8,
-        "productId": "810",
-        "price": 88.99,
-        "image": "https://m.media-amazon.com/images/I/51PPWvDJFkS.jpg"
+        categoryI: 8,
+        productId: "810",
+        price: 88.99,
+        image: "https://m.media-amazon.com/images/I/51PPWvDJFkS.jpg"
     },
     {
-        "categoryId": 9,
-        "productId": "901",
-        "price": 9.99,
-        "image": "https://m.media-amazon.com/images/I/61L6fd-PgAL._AC_UF894,1000_QL80_DpWeblab_.jpg"
+        categoryI: 9,
+        productId: "901",
+        price: 9.99,
+        image: "https://m.media-amazon.com/images/I/61L6fd-PgAL._AC_UF894,1000_QL80_DpWeblab_.jpg"
     },
     {
-        "categoryId": 9,
-        "productId": "902",
-        "price": 90.9,
-        "image": "https://static.langimg.com/thumb/79172213/navbharat-times-79172213.jpg?width=540&resizemode=3"
+        categoryI: 9,
+        productId: "902",
+        price: 90.9,
+        image: "https://static.langimg.com/thumb/79172213/navbharat-times-79172213.jpg?width=540&resizemode=3"
     },
     {
-        "categoryId": 9,
-        "productId": "903",
-        "price": 98.99,
-        "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flipkart.com%2Fengarc-4x4colouring-puja-patla-multi-use-handcrafted-pooja-table-pack-2-wooden-all-purpose-chowki%2Fp%2Fitm58afdda7b81d9&psig=AOvVaw3hhBGgOhtS4NGZRSSb57qG&ust=1700852304892000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLDb8d3m2oIDFQAAAAAdAAAAABAR"
+        categoryI: 9,
+        productId: "903",
+        price: 98.99,
+        image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flipkart.com%2Fengarc-4x4colouring-puja-patla-multi-use-handcrafted-pooja-table-pack-2-wooden-all-purpose-chowki%2Fp%2Fitm58afdda7b81d9&psig=AOvVaw3hhBGgOhtS4NGZRSSb57qG&ust=1700852304892000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLDb8d3m2oIDFQAAAAAdAAAAABAR"
     },
     {
-        "categoryId": 9,
-        "productId": "904",
-        "price": 9.99,
-        "image": "https://m.media-amazon.com/images/I/81j0MyffqEL.jpg"
+        categoryI: 9,
+        productId: "904",
+        price: 9.99,
+        image: "https://m.media-amazon.com/images/I/81j0MyffqEL.jpg"
     },
     {
-        "categoryId": 9,
-        "productId": "905",
-        "price": 97.9,
-        "image": "https://static.langimg.com/thumb/79172225/navbharat-times-79172225.jpg?width=540&resizemode=3"
+        categoryI: 9,
+        productId: "905",
+        price: 97.9,
+        image: "https://static.langimg.com/thumb/79172225/navbharat-times-79172225.jpg?width=540&resizemode=3"
     },
     {
-        "categoryId": 9,
-        "productId": "906",
-        "price": 91.99,
-        "image": "https://m.media-amazon.com/images/I/61L6fd-PgAL._AC_UF894,1000_QL80_DpWeblab_.jpg"
+        categoryI: 9,
+        productId: "906",
+        price: 91.99,
+        image: "https://m.media-amazon.com/images/I/61L6fd-PgAL._AC_UF894,1000_QL80_DpWeblab_.jpg"
     },
     {
-        "categoryId": 9,
-        "productId": "907",
-        "price": 93.9,
-        "image": "https://static.langimg.com/thumb/79172213/navbharat-times-79172213.jpg?width=540&resizemode=3"
+        categoryI: 9,
+        productId: "907",
+        price: 93.9,
+        image: "https://static.langimg.com/thumb/79172213/navbharat-times-79172213.jpg?width=540&resizemode=3"
     },
     {
-        "categoryId": 9,
-        "productId": "908",
-        "price": 96.79,
-        "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flipkart.com%2Fengarc-4x4colouring-puja-patla-multi-use-handcrafted-pooja-table-pack-2-wooden-all-purpose-chowki%2Fp%2Fitm58afdda7b81d9&psig=AOvVaw3hhBGgOhtS4NGZRSSb57qG&ust=1700852304892000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLDb8d3m2oIDFQAAAAAdAAAAABAR"
+        categoryI: 9,
+        productId: "908",
+        price: 96.79,
+        image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flipkart.com%2Fengarc-4x4colouring-puja-patla-multi-use-handcrafted-pooja-table-pack-2-wooden-all-purpose-chowki%2Fp%2Fitm58afdda7b81d9&psig=AOvVaw3hhBGgOhtS4NGZRSSb57qG&ust=1700852304892000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLDb8d3m2oIDFQAAAAAdAAAAABAR"
     },
     {
-        "categoryId": 9,
-        "productId": "909",
-        "price": 98.9,
-        "image": "https://m.media-amazon.com/images/I/81j0MyffqEL.jpg"
+        categoryI: 9,
+        productId: "909",
+        price: 98.9,
+        image: "https://m.media-amazon.com/images/I/81j0MyffqEL.jpg"
     },
     {
-        "categoryId": 9,
-        "productId": "910",
-        "price": 98.99,
-        "image": "https://static.langimg.com/thumb/79172225/navbharat-times-79172225.jpg?width=540&resizemode=3"
+        categoryI: 9,
+        productId: "910",
+        price: 98.99,
+        image: "https://static.langimg.com/thumb/79172225/navbharat-times-79172225.jpg?width=540&resizemode=3"
     },
     {
-        "categoryId": 10,
-        "productId": "1001",
-        "price": 10.1,
-        "image": "https://5.imimg.com/data5/SELLER/Default/2022/8/VF/OG/EO/139177633/-07-.jpg"
+        categoryI: 10,
+        productId: "1001",
+        price: 10.1,
+        image: "https://5.imimg.com/data5/SELLER/Default/2022/8/VF/OG/EO/139177633/-07-.jpg"
     },
     {
-        "categoryId": 10,
-        "productId": "1002",
-        "price": 100.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsIlNuvCN-h4u4zc1r96isyLeYZICqlU_y7dGRg225aWzC-jvlLheS4SBk3fvdUhoL2vY&usqp=CAU"
+        categoryI: 10,
+        productId: "1002",
+        price: 100.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsIlNuvCN-h4u4zc1r96isyLeYZICqlU_y7dGRg225aWzC-jvlLheS4SBk3fvdUhoL2vY&usqp=CAU"
     },
     {
-        "categoryId": 10,
-        "productId": "1003",
-        "price": 108.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZpB-reCHSz2ZTDYvDLU6o9T1L86O_b4xoCS7OabHZpmH5fHt_Mtw6dkeSVwyr6ALiipc&usqp=CAU"
+        categoryI: 10,
+        productId: "1003",
+        price: 108.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZpB-reCHSz2ZTDYvDLU6o9T1L86O_b4xoCS7OabHZpmH5fHt_Mtw6dkeSVwyr6ALiipc&usqp=CAU"
     },
     {
-        "categoryId": 10,
-        "productId": "1004",
-        "price": 10.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIMUF4oGPLVKuHnno0ZMqMfkQX4zkYxblBJxxBS9Uxu6HLgSgLzNon7_cgX-PGqfA1d-o&usqp=CAU"
+        categoryI: 10,
+        productId: "1004",
+        price: 10.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIMUF4oGPLVKuHnno0ZMqMfkQX4zkYxblBJxxBS9Uxu6HLgSgLzNon7_cgX-PGqfA1d-o&usqp=CAU"
     },
     {
-        "categoryId": 10,
-        "productId": "1005",
-        "price": 107.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        categoryI: 10,
+        productId: "1005",
+        price: 107.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
     },
     {
-        "categoryId": 10,
-        "productId": "1006",
-        "price": 101.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        categoryI: 10,
+        productId: "1006",
+        price: 101.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
     },
     {
-        "categoryId": 10,
-        "productId": "1007",
-        "price": 103.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        categoryI: 10,
+        productId: "1007",
+        price: 103.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
     },
     {
-        "categoryId": 10,
-        "productId": "1008",
-        "price": 106.71,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        categoryI: 10,
+        productId: "1008",
+        price: 106.71,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
     },
     {
-        "categoryId": 10,
-        "productId": "1009",
-        "price": 108.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        categoryI: 10,
+        productId: "1009",
+        price: 108.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
     },
     {
-        "categoryId": 10,
-        "productId": "1010",
-        "price": 108.99,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        categoryI: 10,
+        productId: "1010",
+        price: 108.99,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
     },
     {
-        "categoryId": 11,
-        "productId": "1101",
-        "price": 11.1,
-        "image": "https://5.imimg.com/data5/SELLER/Default/2022/8/VF/OG/EO/139177633/-07-.jpg"
+        categoryI: 11,
+        productId: "1101",
+        price: 11.1,
+        image: "https://5.imimg.com/data5/SELLER/Default/2022/8/VF/OG/EO/139177633/-07-.jpg"
     },
     {
-        "categoryId": 11,
-        "productId": "1102",
-        "price": 110.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsIlNuvCN-h4u4zc1r96isyLeYZICqlU_y7dGRg225aWzC-jvlLheS4SBk3fvdUhoL2vY&usqp=CAU"
+        categoryI: 11,
+        productId: "1102",
+        price: 110.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsIlNuvCN-h4u4zc1r96isyLeYZICqlU_y7dGRg225aWzC-jvlLheS4SBk3fvdUhoL2vY&usqp=CAU"
     },
     {
-        "categoryId": 11,
-        "productId": "1103",
-        "price": 118.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZpB-reCHSz2ZTDYvDLU6o9T1L86O_b4xoCS7OabHZpmH5fHt_Mtw6dkeSVwyr6ALiipc&usqp=CAU"
+        categoryI: 11,
+        productId: "1103",
+        price: 118.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZpB-reCHSz2ZTDYvDLU6o9T1L86O_b4xoCS7OabHZpmH5fHt_Mtw6dkeSVwyr6ALiipc&usqp=CAU"
     },
     {
-        "categoryId": 11,
-        "productId": "1104",
-        "price": 11.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIMUF4oGPLVKuHnno0ZMqMfkQX4zkYxblBJxxBS9Uxu6HLgSgLzNon7_cgX-PGqfA1d-o&usqp=CAU"
+        categoryI: 11,
+        productId: "1104",
+        price: 11.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIMUF4oGPLVKuHnno0ZMqMfkQX4zkYxblBJxxBS9Uxu6HLgSgLzNon7_cgX-PGqfA1d-o&usqp=CAU"
     },
     {
-        "categoryId": 11,
-        "productId": "1105",
-        "price": 117.1,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        categoryI: 11,
+        productId: "1105",
+        price: 117.1,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
     },
     {
-        "categoryId": 11,
-        "productId": "1106",
-        "price": 111.1,
-        "image": "https://m.media-amazon.com/images/I/61zqLBKoRvL.jpg"
+        categoryI: 11,
+        productId: "1106",
+        price: 111.1,
+        image: "https://m.media-amazon.com/images/I/61zqLBKoRvL.jpg"
     },
     {
-        "categoryId": 11,
-        "productId": "1107",
-        "price": 113.1,
-        "image": "https://images.meesho.com/images/products/120379798/kt9cz_512.webp"
+        categoryI: 11,
+        productId: "1107",
+        price: 113.1,
+        image: "https://images.meesho.com/images/products/120379798/kt9cz_512.webp"
     },
     {
-        "categoryId": 11,
-        "productId": "1108",
-        "price": 116.71,
-        "image": "https://www.royalentice.com/cdn/shop/products/mala2.jpg?v=1620210979"
+        categoryI: 11,
+        productId: "1108",
+        price: 116.71,
+        image: "https://www.royalentice.com/cdn/shop/products/mala2.jpg?v=1620210979"
     },
     {
-        "categoryId": 11,
-        "productId": "1109",
-        "price": 118.1,
-        "image": "https://5.imimg.com/data5/ANDROID/Default/2023/3/294399527/YM/GB/UR/49084048/product-jpeg-500x500.jpg"
+        categoryI: 11,
+        productId: "1109",
+        price: 118.1,
+        image: "https://5.imimg.com/data5/ANDROID/Default/2023/3/294399527/YM/GB/UR/49084048/product-jpeg-500x500.jpg"
     },
     {
-        "categoryId": 11,
-        "productId": "1110",
-        "price": 118.99,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        categoryI: 11,
+        productId: "1110",
+        price: 118.99,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
     }
 ]
 
