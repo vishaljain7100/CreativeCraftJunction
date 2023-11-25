@@ -5,6 +5,15 @@
     width: 100vw;
 }
 
+.navbar-toggler>.close {
+    display: inline;
+}
+
+.navbar-toggler.collapsed>.close,
+.navbar-toggler:not(.collapsed)>.navbar-toggler-icon {
+    display: none;
+}
+
 .collapse {
     justify-content: space-between;
 }

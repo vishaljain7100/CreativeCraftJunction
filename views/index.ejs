@@ -1,6 +1,19 @@
 <body>
     <!-- navbar file -->
     <% layout("/layouts/boilerplate.ejs") %>
+        <div class="Category">
+            <% for(let i=0; i<categorys.length; i++){ %>
+                <div class="card categoryCard">
+                    <div class="Category-picture">
+                        <img src="<%= categorys[i].image %>" alt="img">
+                    </div>
+                    <h3 class="card-text">
+                        <%= categorys[i].categoryName %>
+                    </h3>
+                </div>
+                <% } %>
+        </div>
+        <hr>
         <div class="Postcontainer">
             <% for(let i=0; i<posts.length; i++){ %>
                 <div class="card">
@@ -20,4 +33,5 @@
                 </div>
                 <% } %>
         </div>
+
 </body>
