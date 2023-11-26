@@ -18,23 +18,24 @@
                 </div>
                 <% } %>
         </div>
-        <hr>
         <div class="Postcontainer">
             <% for(let i=0; i<posts.length; i++){ %>
                 <div class="card">
-                    <div class="picture">
-                        <img src="<%= posts[i].image %>" class="card-img-top" alt="img">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-text">
-                            <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/rupee.png"
-                                alt="rupee" />
-                            <%= posts[i].price %>
-                        </h5>
-                        <p class="card-text">
-                            ProductId : <%= posts[i].productId %>
-                        </p>
-                    </div>
+                    <a href="/category/<%= posts[i].categoryName %>/<%= posts[i].productId %>">
+                        <div class="picture">
+                            <img src="<%= posts[i].image %>" class="card-img-top" alt="img">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-text">
+                                <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/rupee.png"
+                                    alt="rupee" />
+                                <%= posts[i].price %>
+                            </h5>
+                            <p class="card-text">
+                                Product : <%= posts[i].description %>
+                            </p>
+                        </div>
+                    </a>
                 </div>
                 <% } %>
         </div>

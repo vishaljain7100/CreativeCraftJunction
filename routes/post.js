@@ -11,11 +11,20 @@ router.get('/', wrapAsync(async (req, res, next) => {
     res.render("index.ejs", { posts, categorys })
 }))
 
+// Categort Route
 router.get("/Category/:id", wrapAsync(async (req, res, next) => {
     let { id } = req.params
     let categorys = await post.find({ categoryId: id })
     let CategoryName = categorys[0].categoryName
     res.render("Category.ejs", { categorys, CategoryName })
+}))
+
+//Product route
+router.get("/category/:CategoryName/:id", wrapAsync(async (req, res, next) => {
+    const { CategoryName, id } = req.params
+    const product = await post.find({ productId: id })
+    const AllCateProduct = await post.find({ categoryName: CategoryName })
+    res.render("Product.ejs", { product, AllCateProduct })
 }))
 
 module.exports = router
