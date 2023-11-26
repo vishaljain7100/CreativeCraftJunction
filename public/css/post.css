@@ -1,7 +1,8 @@
 .main {
-    padding-top: 5rem;
+    padding-top: 4rem;
 }
 
+.Category-Postcontainer,
 .Postcontainer,
 .Category {
     display: grid;
@@ -11,24 +12,37 @@
     padding: 10px;
 }
 
+.Category {
+    background-color: #c4c4c4;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
 #Category-text {
     text-align: center;
     font-weight: bold;
     font-size: x-large;
     text-decoration: underline #F86F03 5px;
     text-decoration-skip-ink: none;
+    color: #333;
 }
 
 .categoryCard {
     align-items: center;
     border: none;
-    color: #F86F03;
+    color: #333;
+    background-color: #fff;
+}
+
+.categoryCard:hover {
+    background-color: #f0f0f0;
 }
 
 .categoryCard .picture {
     border-radius: 50%;
     height: 9rem;
     width: 9rem;
+    padding-top: 5vh;
 }
 
 .categoryCard .card-text {
@@ -39,7 +53,7 @@
 .categoryCard .picture img {
     border-radius: 50%;
     cursor: pointer;
-    border: 5px solid #005BDA;
+    border: 5px solid #F86F03;
     text-align: center;
 }
 

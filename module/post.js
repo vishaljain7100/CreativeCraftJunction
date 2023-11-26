@@ -5,7 +5,11 @@ const postSchema = new Schema({
     categoryId: Number,
     productId: String,
     price: Number,
-    image: String
+    image: String,
+    categoryName: {
+        type: String,
+        required: true
+    }
 })
 
 const post = new mongoose.model("post", postSchema)
