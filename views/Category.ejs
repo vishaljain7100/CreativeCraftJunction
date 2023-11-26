@@ -1,0 +1,24 @@
+<body>
+    <!-- navbar file -->
+    <% layout("/layouts/boilerplate.ejs") %>
+    <h3 id="Category-text"><%= CategoryName.toUpperCase() %></h3>
+        <div class="Category-Postcontainer">
+            <% for(let i=0; i<categorys.length; i++){ %>
+                <div class="card">
+                    <div class="picture">
+                        <img src="<%= categorys[i].image %>" class="card-img-top" alt="img">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-text">
+                            <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/rupee.png"
+                                alt="rupee" />
+                            <%= categorys[i].price %>
+                        </h5>
+                        <p class="card-text">
+                            ProductId : <%= categorys[i].productId %>
+                        </p>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+</body>

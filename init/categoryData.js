@@ -37,12 +37,12 @@ const categoryData = [
     {
         categoryName: "Aasan",
         categoryId: 8,
-        image: "https://m.media-amazon.com/images/I/81j0MyffqEL.jpg"
+        image: "https://m.media-amazon.com/images/I/91K-p5qJKCL._SX679_.jpg"
     },
     {
         categoryName: "Table",
         categoryId: 9,
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GH4FhR52P8OlitkeRKrWoqIQ4ZH4AGXfXg&usqp=CAU"
+        image: "https://m.media-amazon.com/images/I/81j0MyffqEL.jpg"
     },
     {
         categoryName: "Flower Item",
@@ -52,7 +52,7 @@ const categoryData = [
     {
         categoryName: "Swagat Malla",
         categoryId: 11,
-        image: "https://m.media-amazon.com/images/I/91K-p5qJKCL._SX679_.jpg"
+        image: "https://www.royalentice.com/cdn/shop/products/mala2.jpg?v=1620210979"
     }
 ]
 
