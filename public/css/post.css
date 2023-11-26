@@ -2,7 +2,8 @@
     padding-top: 5rem;
 }
 
-.Postcontainer {
+.Postcontainer,
+.Category {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(11rem, 13rem));
     justify-content: space-evenly;
@@ -10,30 +11,49 @@
     padding: 10px;
 }
 
-.Category {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, auto));
-    justify-content: space-evenly;
-    grid-gap: 10px;
+#Category-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    text-decoration: underline #F86F03 5px;
+    text-decoration-skip-ink: none;
 }
 
 .categoryCard {
-    height: 50vh;
-    width: 15vw;
+    align-items: center;
+    border: none;
+    color: #F86F03;
 }
 
-.Category-picture {
-    height: inherit;
+.categoryCard .picture {
+    border-radius: 50%;
+    height: 9rem;
+    width: 9rem;
 }
 
-.Category-picture img {
-    width: 100%;
-    height: 100%;
+.categoryCard .card-text {
+    font-weight: bold;
+    font-family: initial;
+}
 
+.categoryCard .picture img {
+    border-radius: 50%;
+    cursor: pointer;
+    border: 5px solid #005BDA;
+    text-align: center;
+}
+
+.categoryCard .picture img:hover {
+    opacity: .5;
+    background-color: white;
+}
+
+.categoryCard .picture img:active {
+    transform: scale(.9);
 }
 
 .picture {
-    height: 18rem;
+    height: 15rem;
 }
 
 .picture img {
@@ -43,7 +63,9 @@
 
 /* Media query for phones */
 @media screen and (max-width: 767px) {
-    .Postcontainer {
+
+    .Postcontainer,
+    .Category {
         grid-template-columns: 1fr 1fr;
         grid-gap: 5px;
     }

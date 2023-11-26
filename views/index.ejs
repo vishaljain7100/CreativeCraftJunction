@@ -1,15 +1,20 @@
 <body>
     <!-- navbar file -->
     <% layout("/layouts/boilerplate.ejs") %>
+    <h3 id="Category-text">Category's</h3>
         <div class="Category">
             <% for(let i=0; i<categorys.length; i++){ %>
                 <div class="card categoryCard">
-                    <div class="Category-picture">
-                        <img src="<%= categorys[i].image %>" alt="img">
+                    <div class="picture">
+                        <a href="#">
+                            <img src="<%= categorys[i].image %>" class="card-img-top" alt="img">
+                        </a>
                     </div>
-                    <h3 class="card-text">
-                        <%= categorys[i].categoryName %>
-                    </h3>
+                    <div class="card-body">
+                        <h5 class="card-text">
+                            <%= categorys[i].categoryName.toUpperCase() %>
+                        </h5>
+                    </div>
                 </div>
                 <% } %>
         </div>
