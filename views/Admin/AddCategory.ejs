@@ -1,60 +1,53 @@
 <% layout("/Admin/AdminLayout/boilerplate.ejs") %>
 
     <body>
-        <form action="/create" method="post" class="needs-validation" novalidate>
+        <form action="/Admin/Category" enctype="multipart/form-data" method="post" class="needs-validation" novalidate>
             <div class="row col-8 offset-2 " style="margin-top: 5rem;margin-bottom: 5rem; justify-content: center;">
                 <div class="mb-3 form-floating">
                     <input required type="text" class="form-control" name="listing[title]" id="title"
                         placeholder="Title">
-                    <label for="title" class="form-label pl-1">Title</label>
+                    <label for="title" class="form-label pl-1"><img width="25" height="25"
+                            src="https://img.icons8.com/color/48/collect.png" alt="collect" /> &nbsp; Title</label>
                     <div class="invalid-feedback">
                         Invalid Title
                     </div>
                 </div>
+                <div class="mb-3 form-floating">
+                    <input required type="text" class="form-control" name="listing[description]" id="Description"
+                        placeholder="Description">
+                    <label for="Description" class="form-label pl-1"><img width="25" height="25"
+                            src="https://img.icons8.com/color/48/collect.png" alt="collect" /> &nbsp;Description</label>
+                    <div class="invalid-feedback">
+                        Invalid Description
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="mb-3 col-md-6">
-                        <div class="form-floating mb-3">
-                            <input required type="text" class="form-control" name="listing[image1]" id="Image1"
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <input required type="file" class="form-control" name="image1" id="Image1"
                                 placeholder="Enter the URL/link">
-                            <label for="Image1" class="form-label">Image1</label>
                             <div class="invalid-feedback">
                                 Image 1 required
                             </div>
                         </div>
-                        <div class="form-floating mb-3">
+                        <!-- <div class="mb-3">
                             <input type="text" class="form-control" name="listing[image2]" id="Image2"
                                 placeholder="Enter the URL/link">
-                            <label for="Image2" class="form-label">Image2 (optional)</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="listing[image3]" id="Image3"
-                                placeholder="Enter the URL/link">
-                            <label for="Image3" class="form-label">Image3 (optional)</label>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col col-md-6">
+                        <!-- <div class="mb-3">
+                            <input type="text" class="form-control" name="listing[image3]" id="Image3"
+                                placeholder="Enter the URL/link">
+                        </div> -->
                         <div class="mb-3 form-floating col-md-12">
                             <input required type="text" class="form-control" name="listing[price]" id="Price"
                                 placeholder="1,200">
-                            <label for="Price" class="form-label"> &#8377; Price</label>
+                            <label for="Price" class="form-label"> <img width="30" height="30"
+                                    src="https://img.icons8.com/fluency/48/price-tag-euro.png" alt="price-tag-euro" />
+                                Price</label>
                             <div class="invalid-feedback">
                                 Enter Valid Price
-                            </div>
-                        </div>
-                        <div class="mb-3 form-floating col-md-12">
-                            <input required type="text" class="form-control" name="listing[location]" id="Location"
-                                placeholder="Jaypur">
-                            <label for="Location" class="form-label">Location</label>
-                            <div class="invalid-feedback">
-                                Invalid Location
-                            </div>
-                        </div>
-                        <div class="mb-3 form-floating col-md-12">
-                            <input required type="text" class="form-control" name="listing[country]" id="Country"
-                                placeholder="India">
-                            <label for="Country" class="form-label">Country</label>
-                            <div class="invalid-feedback">
-                                Invalid Country
                             </div>
                         </div>
                     </div>

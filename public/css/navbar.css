@@ -40,22 +40,22 @@
     height: 2rem;
 }
 
-.nav-item{
+.nav-item {
     position: relative;
 }
 
-.nav-item::after{
+.nav-link::after {
     content: "";
     width: 0%;
     position: absolute;
     left: 0%;
-    bottom: 0%;
+    bottom: 10%;
     height: 3px;
     background-color: #F86F03;
     transition: all ease 1s;
 }
 
-.nav-item:hover::after{
+.nav-link:hover::after {
     width: 100%;
 }
 
