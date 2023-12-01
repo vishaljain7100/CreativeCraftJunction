@@ -28,10 +28,6 @@
     font-weight: bold;
 }
 
-.nav-link:hover {
-    text-decoration: 2px underline #F86F03;
-}
-
 .d-flex .btn:hover {
     color: white;
 }
@@ -42,6 +38,25 @@
 
 #logo {
     height: 2rem;
+}
+
+.nav-item{
+    position: relative;
+}
+
+.nav-item::after{
+    content: "";
+    width: 0%;
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    height: 3px;
+    background-color: #F86F03;
+    transition: all ease 1s;
+}
+
+.nav-item:hover::after{
+    width: 100%;
 }
 
 @media (min-width:320px) and (max-width : 625px) {
