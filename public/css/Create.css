@@ -1,0 +1,18 @@
+/* create page */
+.add-new {
+    background-color: orange;
+    border: none;
+    width: auto;
+}
+
+.form-control {
+    border-color: black;
+}
+
+.form-label {
+    margin-left: 1rem;
+}
+
+.form-floating .form-control {
+    padding-left: 2rem;
+}
