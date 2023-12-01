@@ -7,15 +7,32 @@ const ExpressError = require("./utility/ExpressError")
 const wrapAsync = require("./utility/wrapAsync")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
-const log = console.log
 const postRoutes = require("./routes/post")
+const AdminRoutes = require("./routes/Admin")
 const data = require("./init/data")
+const categoryData = require("./init/categoryData")
 const post = require("./module/post")
 const category = require("./module/category")
-const categoryData = require("./init/categoryData")
-const AdminRoutes = require("./routes/Admin")
+const flash = require("connect-flash")
+const session = require("express-session")
+const passpord = require("passport")
+const LocalStrategy = require("passport-local")
+const  User = require("./module/user")
+const UserRoutes = require("./routes/user")
 
+const sessionOption = {
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    }
 
+}
+
+//required middlewares 
 app.use(express.static(path.join(__dirname, "public")))
 app.use(express.static(path.join(__dirname, "public/css")))
 app.use(express.static(path.join(__dirname, "public/image")))
@@ -23,6 +40,8 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.engine("ejs", ejsMate)
 dotenv.config()
+app.use(flash())
+app.use(session(sessionOption))
 
 const db_url = process.env.DATABASE_URL
 
@@ -34,8 +53,17 @@ async function main() {
     await mongoose.connect(db_url)
 }
 
+//flash middle ware for message sending 
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error')
+    next()
+})
+
+//all routes
 app.use('/', postRoutes)
 app.use('/Admin', AdminRoutes)
+app.use('/User', UserRoutes)
 
 app.all("*", wrapAsync(async (req, res, next) => {
     throw new ExpressError(404, "Page not found!")

@@ -1,0 +1,16 @@
+.navbar {
+    background-color: #005bda !important;
+    position: fixed;
+    z-index: 999;
+    width: 100vw;
+    top: 0;
+}
+
+a{
+    color: white !important;
+}
+
+a:hover{
+    color: orange !important;
+    text-decoration: underline;
+}

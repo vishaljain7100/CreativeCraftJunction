@@ -1,0 +1,46 @@
+#signUpDiv {
+    text-align: center;
+    padding: 10px;
+    display: grid;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn {
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
+
+.btn:active {
+    transform: scale(0.8);
+}
+
+.title {
+    color: #ff9f00;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+#signUpForm {
+    width: 20rem;
+}
+
+.borderspan {
+    border: 1px solid #9e9494 !important;
+    padding: 2vh 3vw;
+    border-radius: 5% !important;
+}
+
+
+.btn-outline-warning {
+    color: #ff9f00 !important;
+}
+
+.btn-outline-warning:hover {
+    color: #000 !important;
+}
+
+.borderspan a {
+    color: #ff9f00;
+}
