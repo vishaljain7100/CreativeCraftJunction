@@ -42,6 +42,8 @@ app.engine("ejs", ejsMate)
 dotenv.config()
 app.use(flash())
 app.use(session(sessionOption))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
 const db_url = process.env.DATABASE_URL
 
