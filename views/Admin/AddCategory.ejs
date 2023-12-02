@@ -24,22 +24,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <input required type="file" class="form-control" name="image1" id="Image1"
+                            <input required type="file" class="form-control" name="listing[image1]" id="Image1"
                                 placeholder="Enter the URL/link">
                             <div class="invalid-feedback">
                                 Image 1 required
                             </div>
                         </div>
-                        <!-- <div class="mb-3">
-                            <input type="text" class="form-control" name="listing[image2]" id="Image2"
+                        <div class="mb-3">
+                            <input type="file" class="form-control" name="listing[image2]" id="Image2"
                                 placeholder="Enter the URL/link">
-                        </div> -->
+                        </div>
                     </div>
                     <div class="col col-md-6">
-                        <!-- <div class="mb-3">
-                            <input type="text" class="form-control" name="listing[image3]" id="Image3"
+                        <div class="mb-3">
+                            <input type="file" class="form-control" name="listing[image3]" id="Image3"
                                 placeholder="Enter the URL/link">
-                        </div> -->
+                        </div>
                         <div class="mb-3 form-floating col-md-12">
                             <input required type="text" class="form-control" name="listing[price]" id="Price"
                                 placeholder="1,200">
@@ -52,7 +52,6 @@
                         </div>
                     </div>
                 </div>
-
                 <button class="btn add-new btn-primary bg-danger" type="submit">Add</button>
             </div>
         </form>
