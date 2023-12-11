@@ -8,18 +8,23 @@
             <% for(let i=0; i<categorys.length; i++){ %>
                 <a href="/category/<%= CategoryName %>/<%= categorys[i].productId %>">
                     <div class="card">
-                        <div class="picture">
-                            <img src="<%= categorys[i].image %>" class="card-img-top" alt="img">
+                        <div class="picture picture-category">
+                            <img src="<%= categorys[i].image1 %>" class="card-img-top" alt="img">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-text">
-                                <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/rupee.png"
-                                    alt="rupee" />
-                                <%= categorys[i].price %>
+                        <div class="aboutProduct-category">
+                            <h5 class="Product-title">
+                                <img width="20" height="20" src="https://img.icons8.com/fluency/48/collect.png"
+                                    alt="collect" />
+                                <%= categorys[i].title %>
                             </h5>
-                            <p class="card-text">
-                                ProductId : <%= categorys[i].productId %>
-                            </p>
+                            <h6 id="Price" class="mb-3"><i class="fa-solid fa-indian-rupee-sign"></i>
+                                <%= categorys[i].price %>
+                            </h6>
+                            <div id="discription mb-3">
+                                <h5 class="discription" style="display: inline;">
+                                    ProductId : <%= categorys[i].productId %>
+                                </h5>
+                            </div>
                         </div>
                     </div>
                 </a>

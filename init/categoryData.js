@@ -48,11 +48,6 @@ const categoryData = [
         categoryName: "Flower Item",
         categoryId: 10,
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZpB-reCHSz2ZTDYvDLU6o9T1L86O_b4xoCS7OabHZpmH5fHt_Mtw6dkeSVwyr6ALiipc&usqp=CAU"
-    },
-    {
-        categoryName: "Swagat Malla",
-        categoryId: 11,
-        image: "https://www.royalentice.com/cdn/shop/products/mala2.jpg?v=1620210979"
     }
 ]
 

@@ -17,8 +17,9 @@ const flash = require("connect-flash")
 const session = require("express-session")
 const passpord = require("passport")
 const LocalStrategy = require("passport-local")
-const  User = require("./module/user")
+const User = require("./module/user")
 const UserRoutes = require("./routes/user")
+const log = console.log
 
 const sessionOption = {
     secret: 'keyboard cat',
@@ -43,7 +44,7 @@ dotenv.config()
 app.use(flash())
 app.use(session(sessionOption))
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }))
 
 const db_url = process.env.DATABASE_URL
 
