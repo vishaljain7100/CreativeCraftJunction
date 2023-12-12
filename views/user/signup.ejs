@@ -8,6 +8,10 @@
                 <h3 class="loginSignup">Login or signUp</h3>
                 <form action="/User/signUp" method="post" class="needs-validation" id="signUpForm" novalidate>
                     <div class="mb-3 form-floating">
+                        <input required type="number" class="form-control" name="ContactNumber" id="number" placeholder="number">
+                        <label for="number" class="form-label pl-1"><i class="fa-solid fa-envelope"></i> Number</label>
+                    </div>
+                    <div class="mb-3 form-floating">
                         <input required type="text" class="form-control" name="username" id="username"
                             placeholder="username">
                         <label for="username" class="form-label pl-1"><i class="fa-solid fa-user"></i> username</label>
