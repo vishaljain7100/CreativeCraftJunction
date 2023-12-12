@@ -1,4 +1,4 @@
-const { string } = require("joi")
+const { string, number } = require("joi")
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
@@ -22,15 +22,15 @@ const postSchema = new Schema({
         type: String
     },
     price: {
-        type: String,
+        type: Number,
         required: true
     },
     productId: {
-        type: String,
+        type: Number,
         required: true
     },
     categoryId: {
-        type: String,
+        type: Number,
         required: true
     },
     categoryName: {
