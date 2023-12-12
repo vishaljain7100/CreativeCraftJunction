@@ -4,6 +4,7 @@ const wrapAsync = require("../utility/wrapAsync")
 const ExpressError = require("../utility/ExpressError")
 const multer = require('multer')
 const postValidation = require("../Schema")
+const post = require("../module/post")
 
 // multer middleware to storge the db in upload folder
 const storage = multer.diskStorage({
@@ -20,14 +21,13 @@ const upload = multer({ storage: storage })
 //schema validiton function
 const SchemaValidation = (req, res, next) => {
     let result = postValidation.validate(req.body)
-    console.log(result)
     if (result.error) {
-        throw new ExpressError(400,result.error.message)
+        req.flash('error', result.error.message)
+        res.redirect("/Admin/Product")
     } else {
         next()
     }
 }
-
 
 //Admin route
 router.get("/", wrapAsync(async (req, res, next) => {
@@ -49,16 +49,16 @@ router.post("/Product",
         { name: "listing[image3]", maxCount: 1 },
     ]),
     wrapAsync(async (req, res, next) => {
-        const images = []
-        for (const key in req.files) {
-            if (req.files[key].length > 0) {
-                images.push(req.files[key][0].filename)
-            }
-        }
+        const files = req.files
+        console.log(files)
 
+        // console.log(images)
         const postDetails = req.body.listing
-        console.log(postDetails)
-        // res.redirect('/Admin')
+        const newPost = await new post(postDetails)
+        // newPost.save()
+        //     .then(res => console.log(res))
+        //     .catch(err => console.log(err))
+        // // res.redirect('/Admin')
     }))
 
 module.exports = router
