@@ -16,3 +16,37 @@
 .form-floating .form-control {
     padding-left: 2rem;
 }
+
+.btn-outline-warning {
+    color: #ff9f00 !important;
+}
+
+.btn-outline-warning:hover {
+    color: #000 !important;
+}
+
+.borderspan a {
+    color: #ff9f00;
+}
+
+@media (min-width:320px) and (max-width:540px) {
+    .offset-2 {
+        margin-left: 1%;
+    }
+
+    .col-8 {
+        width: 100%;
+    }
+}
+
+/* For Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* For Chrome, Safari, and Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
