@@ -13,7 +13,7 @@
     cursor: pointer;
 }
 
-.Category-Postcontainer a{
+.Category-Postcontainer a {
     text-decoration: none;
 }
 
@@ -72,6 +72,8 @@
 
 .picture {
     height: 15rem;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 .Postcontainer .card {
@@ -91,7 +93,12 @@
 .picture img {
     width: 100%;
     height: 100%;
-    border-radius: 20%;
+    border-radius: 7%;
+    transition: all ease 1s;
+}
+
+.picture:hover img {
+    scale: 1.2;
 }
 
 .picture-category img {
@@ -100,6 +107,7 @@
 
 .aboutProduct-category {
     padding: 1rem;
+    padding-top: 0;
 }
 
 .aboutProduct-category .Product-title {
@@ -108,6 +116,7 @@
     margin: 1 !important;
     font-size: large;
     text-decoration: none !important;
+    margin: 0;
 }
 
 .aboutProduct-category .discription {
@@ -115,6 +124,10 @@
     color: black;
     margin-bottom: 5px;
     font-size: medium;
+    padding-left: .4vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .aboutProduct-category #Price {
@@ -124,6 +137,7 @@
     display: inline-block;
     padding-right: 10px;
     margin: 0 !important;
+    padding-left: .4vw;
 }
 
 .aboutProduct-category #ratingCount {
