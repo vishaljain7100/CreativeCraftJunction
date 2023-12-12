@@ -47,6 +47,15 @@ app.use(session(sessionOption))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.use(passpord.initialize())
+app.use(passpord.session())
+passpord.use(new LocalStrategy(User.authenticate()))
+passpord.serializeUser(User.serializeUser())
+passpord.deserializeUser(User.deserializeUser())
+
+
+
+
 const db_url = process.env.DATABASE_URL
 
 main()

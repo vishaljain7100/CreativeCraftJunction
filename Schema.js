@@ -1,7 +1,7 @@
 const Joi = require("joi")
 
 
-const post = Joi.object({
+module.exports = {
     listing: Joi.object({
         title: Joi.string().required().min(3).max(20),
         description: Joi.string().required().min(5).max(100),
@@ -12,7 +12,12 @@ const post = Joi.object({
         productId: Joi.string().required(),
         categoryId: Joi.number().required(),
         categoryName: Joi.string().required()
-    })
-})
+    }).required(),
 
-module.exports = post
+    userSchema: Joi.object({
+        username: Joi.string().required(),
+        email: Joi.string().required(),
+        password: Joi.string().required(),
+        ContactNumber:Joi.number().required()
+    })
+}

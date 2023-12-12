@@ -3,7 +3,7 @@ const router = express.Router()
 const wrapAsync = require("../utility/wrapAsync")
 const ExpressError = require("../utility/ExpressError")
 const multer = require('multer')
-const postValidation = require("../Schema")
+const { listing } = require("../Schema")
 const post = require("../module/post")
 
 // multer middleware to storge the db in upload folder
@@ -20,7 +20,7 @@ const upload = multer({ storage: storage })
 
 //schema validiton function
 const SchemaValidation = (req, res, next) => {
-    let result = postValidation.validate(req.body)
+    let result = listing.validate(req.body.listing)
     if (result.error) {
         req.flash('error', result.error.message)
         res.redirect("/Admin/Product")
