@@ -16,9 +16,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-// schema validation
-
-
 router.get("/", wrapAsync(async (req, res, next) => {
     res.render("Admin/Admin.ejs")
 }))
@@ -45,7 +42,7 @@ router.post("/Product",
         }
 
 
-        
+
         // res.redirect('/Admin')
     }))
 
