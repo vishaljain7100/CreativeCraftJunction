@@ -1,58 +1,34 @@
 <% layout("/Admin/AdminLayout/boilerplate.ejs") %>
 
     <body>
-        <form action="/Admin/Category" enctype="multipart/form-data" method="post" class="needs-validation" novalidate>
+        <form action="/Admin/Category" method="post" class="needs-validation" novalidate>
             <div class="row col-8 offset-2 " style="margin-top: 5rem;margin-bottom: 5rem; justify-content: center;">
                 <div class="mb-3 form-floating">
-                    <input required type="text" class="form-control" name="listing[title]" id="title"
+                    <input required type="text" class="form-control" name="category[categoryName]" id="title"
                         placeholder="Title">
                     <label for="title" class="form-label pl-1"><img width="25" height="25"
-                            src="https://img.icons8.com/color/48/collect.png" alt="collect" /> &nbsp; Title</label>
+                            src="https://img.icons8.com/fluency/48/tag--v1.png" alt="tag--v1" />&nbsp; Title</label>
                     <div class="invalid-feedback">
                         Invalid Title
                     </div>
                 </div>
                 <div class="mb-3 form-floating">
-                    <input required type="text" class="form-control" name="listing[description]" id="Description"
-                        placeholder="Description">
-                    <label for="Description" class="form-label pl-1"><img width="25" height="25"
-                            src="https://img.icons8.com/color/48/collect.png" alt="collect" /> &nbsp;Description</label>
+                    <input required type="text" class="form-control" name="category[categoryId]" id="CategoryId"
+                        placeholder="Category Id">
+                    <label for="CategoryId" class="form-label pl-1"><img width="25" height="25"
+                            src="https://img.icons8.com/color/48/pen.png" alt="pen" /> &nbsp;Category Id</label>
                     <div class="invalid-feedback">
-                        Invalid Description
+                        Invalid Category Id
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <input required type="file" class="form-control" name="listing[image1]" id="Image1"
-                                placeholder="Enter the URL/link">
-                            <div class="invalid-feedback">
-                                Image 1 required
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="file" class="form-control" name="listing[image2]" id="Image2"
-                                placeholder="Enter the URL/link">
-                        </div>
-                    </div>
-                    <div class="col col-md-6">
-                        <div class="mb-3">
-                            <input type="file" class="form-control" name="listing[image3]" id="Image3"
-                                placeholder="Enter the URL/link">
-                        </div>
-                        <div class="mb-3 form-floating col-md-12">
-                            <input required type="text" class="form-control" name="listing[price]" id="Price"
-                                placeholder="1,200">
-                            <label for="Price" class="form-label"> <img width="30" height="30"
-                                    src="https://img.icons8.com/fluency/48/price-tag-euro.png" alt="price-tag-euro" />
-                                Price</label>
-                            <div class="invalid-feedback">
-                                Enter Valid Price
-                            </div>
-                        </div>
+                <div class="mb-3">
+                    <input required type="file" class="form-control" name="category[image]" id="Image"
+                        placeholder="Image">
+                    <div class="invalid-feedback">
+                        Invalid Image
                     </div>
                 </div>
-                <button class="btn add-new btn-primary bg-danger" type="submit">Add</button>
+                <button class="btn add-new btn-outline-warning">Add</button>
             </div>
         </form>
     </body>

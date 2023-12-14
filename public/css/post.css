@@ -158,3 +158,16 @@
         height: 15rem;
     }
 }
+
+
+.btn-outline-warning {
+    color: #ff9f00 !important;
+}
+
+.btn-outline-warning:hover {
+    color: #000 !important;
+}
+
+.borderspan a {
+    color: #ff9f00;
+}
