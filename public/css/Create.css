@@ -1,10 +1,11 @@
 /* create page */
 .add-new {
-    background-color: orange;
-    border: none;
     width: auto;
+    font-size: large;
+    font-weight: bold;
+    border: 4px solid #ffc107;
 }
-
+        
 .form-control {
     border-color: black;
 }
@@ -15,18 +16,6 @@
 
 .form-floating .form-control {
     padding-left: 2rem;
-}
-
-.btn-outline-warning {
-    color: #ff9f00 !important;
-}
-
-.btn-outline-warning:hover {
-    color: #000 !important;
-}
-
-.borderspan a {
-    color: #ff9f00;
 }
 
 @media (min-width:320px) and (max-width:540px) {

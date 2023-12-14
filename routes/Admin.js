@@ -4,6 +4,7 @@ const wrapAsync = require("../utility/wrapAsync")
 const ExpressError = require("../utility/ExpressError")
 const multer = require('multer')
 const { listing } = require("../Schema")
+const { categorySchema } = require("../Schema")
 const post = require("../module/post")
 
 // multer middleware to storge the db in upload folder
@@ -29,18 +30,47 @@ const SchemaValidation = (req, res, next) => {
     }
 }
 
+//schema validiton function
+const CategorySchemaValidation = (req, res, next) => {
+    console.log(req.body.category)
+    let result = categorySchema.validate(req.body.category)
+    console.log(result.error.message)
+    if (result.error) {
+        req.flash('error', result.error.message)
+        res.redirect("/Admin/Category")
+    } else {
+        next()
+    }
+}
+
 //Admin route
 router.get("/", wrapAsync(async (req, res, next) => {
     res.render("Admin/Admin.ejs")
 }))
 
 // Add Category (get form route)
+router.get("/Category", (req, res, next) => {
+    res.render("Admin/AddCategory")
+})
+
+// Add Product (Post route)
+router.post("/Category",
+    CategorySchemaValidation,
+    upload.single("image"),
+    wrapAsync(async (req, res, next) => {
+        console.log(req.body)
+        console.log("validation error solved")
+        const categoryDetails = req.body.category
+        console.log(categoryDetails)
+    }))
+
+
+// Add Product (get form route)
 router.get("/Product", wrapAsync(async (req, res, next) => {
     res.render('Admin/Addproduct.ejs')
 }))
 
-
-// Add Category (Post route)
+// Add Product (Post route)
 router.post("/Product",
     SchemaValidation,
     upload.fields([
@@ -54,6 +84,7 @@ router.post("/Product",
 
         // console.log(images)
         const postDetails = req.body.listing
+        console.log(postDetails)
         const newPost = await new post(postDetails)
         // newPost.save()
         //     .then(res => console.log(res))

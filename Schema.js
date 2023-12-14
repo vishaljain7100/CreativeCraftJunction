@@ -18,6 +18,12 @@ module.exports = {
         username: Joi.string().required(),
         email: Joi.string().required(),
         password: Joi.string().required(),
-        ContactNumber:Joi.number().required()
-    })
+        ContactNumber: Joi.number().required()
+    }).required(),
+
+    categorySchema: Joi.object({
+        categoryName: Joi.string().required(),
+        categoryId: Joi.string().required(),
+        image: Joi.string().required()
+    }).required()
 }

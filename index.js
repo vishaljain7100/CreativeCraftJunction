@@ -53,9 +53,6 @@ passpord.use(new LocalStrategy(User.authenticate()))
 passpord.serializeUser(User.serializeUser())
 passpord.deserializeUser(User.deserializeUser())
 
-
-
-
 const db_url = process.env.DATABASE_URL
 
 main()
