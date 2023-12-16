@@ -9,6 +9,13 @@
     display: inline;
 }
 
+.navbar-nav {
+    padding-left: 1vw;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .navbar-toggler.collapsed>.close,
 .navbar-toggler:not(.collapsed)>.navbar-toggler-icon {
     display: none;
@@ -23,6 +30,8 @@
 }
 
 .nav-item .nav-link {
+    display: flex;
+    align-items: center;
     color: white;
     font-size: large;
     font-weight: bold;
@@ -42,6 +51,7 @@
 
 .nav-item {
     position: relative;
+    display: inline-block;
 }
 
 .nav-link::after {

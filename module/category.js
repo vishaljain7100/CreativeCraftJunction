@@ -13,7 +13,8 @@ const categorySchema = new Schema({
     },
     image: {
         type: String,
-        required: true
+        // required: true,
+        default: "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/81fXTjBQhuL.jpg"
     }
 })
 

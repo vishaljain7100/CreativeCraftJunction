@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const User = require("../module/user")
-const { userSchema } = require("../Schema")
+const { user } = require("../Schema")
 const passport = require("passport")
 const wrapAsync = require("../utility/wrapAsync")
 const ExpressError = require("../utility/ExpressError")
@@ -9,9 +9,11 @@ const ExpressError = require("../utility/ExpressError")
 
 //user validation funciton
 const userValidaiton = (req, res, next) => {
-    const result = userSchema.validate(req.body)
+    const result = user.validate(req.body.user)
     if (result.error) {
-        throw new ExpressError(400, result.error.message)
+        console.log(result.error)
+        req.flash("error", result.error.message)
+        res.redirect('/user/signUp')
     } else {
         next()
     }
@@ -24,13 +26,13 @@ router.get("/signUp", (req, res) => {
 
 router.post("/signUp", userValidaiton, wrapAsync(async (req, res, next) => {
     try {
-        const { username, email, password } = req.body
-        const newUser = new User({ username, email })
+        const { username, email, password, ContactNumber } = req.body.user
+        const newUser = new User({ username, email, ContactNumber })
         const registorUser = await User.register(newUser, password)
-        res.send(registorUser)
+        req.flash("success", "Welcome to CreativeCraftJunction")
+        res.redirect('/')
     } catch (err) {
-        console.log(err)
-        req.flash('error', err)
+        req.flash('error', err.message)
         res.redirect("/user/signUp")
     }
 }))

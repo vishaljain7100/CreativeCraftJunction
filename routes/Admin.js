@@ -6,6 +6,7 @@ const multer = require('multer')
 const { listing } = require("../Schema")
 const { categorySchema } = require("../Schema")
 const post = require("../module/post")
+const category = require("../module/category")
 
 // multer middleware to storge the db in upload folder
 const storage = multer.diskStorage({
@@ -32,10 +33,9 @@ const SchemaValidation = (req, res, next) => {
 
 //schema validiton function
 const CategorySchemaValidation = (req, res, next) => {
-    console.log(req.body.category)
     let result = categorySchema.validate(req.body.category)
-    console.log(result.error.message)
     if (result.error) {
+        console.log(result.error)
         req.flash('error', result.error.message)
         res.redirect("/Admin/Category")
     } else {
@@ -53,15 +53,16 @@ router.get("/Category", (req, res, next) => {
     res.render("Admin/AddCategory")
 })
 
-// Add Product (Post route)
+// Add Category (Post route)
 router.post("/Category",
     CategorySchemaValidation,
     upload.single("image"),
     wrapAsync(async (req, res, next) => {
-        console.log(req.body)
-        console.log("validation error solved")
         const categoryDetails = req.body.category
-        console.log(categoryDetails)
+        const newCategory = await new category(categoryDetails)
+        await newCategory.save()
+        const AllCategorys = await category.find()
+        res.render("Admin/showCategory.ejs", { AllCategorys })
     }))
 
 
