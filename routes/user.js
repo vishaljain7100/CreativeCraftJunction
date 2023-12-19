@@ -24,6 +24,7 @@ router.get("/signUp", (req, res) => {
     res.render('user/signup.ejs')
 })
 
+//sign Up post route
 router.post("/signUp", userValidaiton, wrapAsync(async (req, res, next) => {
     try {
         const { username, email, password, ContactNumber } = req.body.user
@@ -36,5 +37,15 @@ router.post("/signUp", userValidaiton, wrapAsync(async (req, res, next) => {
         res.redirect("/user/signUp")
     }
 }))
+
+//login get route
+router.get("/login", (req, res) => {
+    res.render("user/login")
+})
+
+router.get("/google/login", passport.authenticate("google"), { scope: ["profile", "email"] },(req,res)=>{
+    console.log("request sented")
+})
+
 
 module.exports = router
