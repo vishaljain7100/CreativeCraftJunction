@@ -5,6 +5,7 @@ const { user } = require("../Schema")
 const passport = require("passport")
 const wrapAsync = require("../utility/wrapAsync")
 const ExpressError = require("../utility/ExpressError")
+const { trusted } = require("mongoose")
 
 
 //user validation funciton
@@ -43,9 +44,23 @@ router.get("/login", (req, res) => {
     res.render("user/login")
 })
 
-router.get("/google/login", passport.authenticate("google"), { scope: ["profile", "email"] },(req,res)=>{
-    console.log("request sented")
-})
+//login through google
+router.get('/login/google',
+    passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/auth/google/callback',
+    passport.authenticate('google',
+        { failureRedirect: '/user/signUp', failureFlash: true, failureMessage: true, successFlash: true }
+    ),
+    (req, res) => {
+        req.flash("success", "You loggedIn SuccessFully")
+        console.log(req.flash())
+        res.redirect("/")
+    }
+);
+
+
+
 
 
 module.exports = router

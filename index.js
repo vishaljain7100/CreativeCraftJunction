@@ -19,6 +19,8 @@ const passpord = require("passport")
 const LocalStrategy = require("passport-local")
 const User = require("./module/user")
 const UserRoutes = require("./routes/user")
+require("./auth")
+
 const log = console.log
 
 const sessionOption = {
