@@ -11,10 +11,9 @@ const OtpSchema = require("../module/otp")
 
 //sending otp to user
 module.exports.signUp = wrapAsync(async (req, res) => {
-    const { ContactNumber, username, email } = req.body.user
+    const { ContactNumber, email } = req.body.user
     //if user exist then login page redirect
     const userExist = await User.find({ ContactNumber: ContactNumber })
-    console.log(userExist)
     if (userExist.length !== 0) {
         await req.flash('error', "Account Exist!, Please login")
         res.redirect("/user/login")
@@ -33,13 +32,13 @@ module.exports.signUp = wrapAsync(async (req, res) => {
     otp.otp = await bcrypt.hash(otp.otp, salt)
 
     const result = await otp.save()
-    res.render("user/otp.ejs", { ContactNumber, username, email })
+    res.render("user/otp.ejs", { ContactNumber,email })
 })
 
 
 //verify otp sended by user
 module.exports.verfiySignUp = wrapAsync(async (req, res) => {
-    const { ContactNumber, username, email } = req.body.user
+    const { ContactNumber, email } = req.body.user
     const { otp } = req.body
     const NumberOtp = otp.join("")
 
@@ -54,9 +53,10 @@ module.exports.verfiySignUp = wrapAsync(async (req, res) => {
 
     //otp verification and saving users after verification
     if (rightOtpFind.number === ContactNumber && validUser) {
-        const token = User.generateJWT
-        const newUser = await new User({ username, email, ContactNumber })
-        await newUser.save()
+        const newUser = await new User({ email, ContactNumber })
+        await newUser.save().then(res => console.log(res))
+        const token = User.generateJWT()
+        console.log(token)
         //deleting otp after user registor
         await OtpSchema.deleteMany({ number: rightOtpFind.number })
         return req.status(200).send({
@@ -66,6 +66,6 @@ module.exports.verfiySignUp = wrapAsync(async (req, res) => {
         })
     } else {
         await req.flash('error', "Your OTP Was Wrong")
-        res.render("user/otp.ejs", { ContactNumber, username, email })
+        res.render("user/otp.ejs", { ContactNumber, email })
     }
 })

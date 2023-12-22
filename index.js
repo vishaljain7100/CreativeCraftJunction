@@ -15,8 +15,6 @@ const post = require("./module/post")
 const category = require("./module/category")
 const flash = require("connect-flash")
 const session = require("express-session")
-const passpord = require("passport")
-const LocalStrategy = require("passport-local")
 const User = require("./module/user")
 const UserRoutes = require("./routes/user")
 require("./auth")
@@ -48,13 +46,6 @@ app.use(flash())
 app.use(session(sessionOption))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
-app.use(passpord.initialize())
-app.use(passpord.session())
-passpord.use(new LocalStrategy(User.authenticate()))
-passpord.serializeUser(User.serializeUser())
-passpord.deserializeUser(User.deserializeUser())
-
 const db_url = process.env.DATABASE_URL
 
 main()
@@ -90,6 +81,9 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 })
 
+// User.getIndexes()
+
+// User.deleteMany({}).then(res => console.log(res))
 
 // post.insertMany(data).then(res => console.log(res)).catch(err => console.log(err))
 // post.deleteMany({}).then(res => log(res)).catch(err => log(err))
