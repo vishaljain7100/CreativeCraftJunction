@@ -16,7 +16,7 @@ const userSchema = new Schema({
 }, { timestamps: true })
 
 
-userSchema.method.generateJWT = function () {
+userSchema.generateJWT = async() => {
     const token = jwt.sign({
         _id: this._id,
         ContactNumber: this.ContactNumber

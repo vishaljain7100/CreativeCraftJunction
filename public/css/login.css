@@ -4,6 +4,12 @@
     display: grid;
     justify-content: center;
     width: 100%;
+    background-color: beige;
+    align-items: start;
+}
+
+#login{
+    height: inherit;
 }
 
 .btn {
@@ -18,23 +24,4 @@
 
 #loginForm {
     width: 20rem;
-}
-
-.borderspan {
-    border: 1px solid #9e9494 !important;
-    padding: 2vh 3vw;
-    border-radius: 5% !important;
-}
-
-
-.btn-outline-warning {
-    color: #ff9f00 !important;
-}
-
-.btn-outline-warning:hover {
-    color: #000 !important;
-}
-
-.borderspan a {
-    color: #ff9f00;
 }

@@ -4,6 +4,12 @@
     display: grid;
     justify-content: center;
     width: 100%;
+    background-color: beige;
+    align-items: start;
+}
+
+#signUp {
+    height: inherit;
 }
 
 .btn {
@@ -27,11 +33,11 @@
 }
 
 .borderspan {
-    border: 1px solid #9e9494 !important;
+    border: 5px solid #005dda !important;
     padding: 2vh 3vw;
     border-radius: 5% !important;
+    background-color: #edf4ff;
 }
-
 
 .btn-outline-warning {
     color: #ff9f00 !important;
