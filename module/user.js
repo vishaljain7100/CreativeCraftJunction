@@ -21,6 +21,7 @@ userSchema.method.generateJWT = function () {
         _id: this._id,
         ContactNumber: this.ContactNumber
     }, process.env.JWT_SECRET_KEY, { expiresIn: "7d" })
+    return token
 }
 
 userSchema.plugin(passportLocalMongoose)
