@@ -3,6 +3,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const dotenv = require("dotenv");
 dotenv.config();
 const User = require("./module/user");
+const express = require("express")
+const router = express.Router()
 
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -13,15 +15,13 @@ passport.use(new GoogleStrategy({
   async function (request, accessToken, refreshToken, profile, done) {
     try {
       // Find or create user based on Google profile information
-      const existingUser = await User.findOne({ email: profile.emails[0].value });
-      console.log(existingUser)
+      const existingUser = await User.findOne({ email: profile.emails[0].value })
 
       if (existingUser) {
         // User already exists, return the existing user
         return done(null, existingUser);
       }
-      else{
-        done(null,null)
+      else {
       }
     } catch (err) {
       return done(err);

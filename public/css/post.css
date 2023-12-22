@@ -52,7 +52,7 @@
     border-radius: 50%;
     height: 9rem;
     width: 9rem;
-    padding-top: 5vh;
+    margin-top:5vh ;
 }
 
 .categoryCard .card-text {

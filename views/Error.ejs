@@ -1,6 +1,12 @@
 <body>
     <!-- navbar file -->
     <% layout("/layouts/boilerplate.ejs") %>
-    <span>Error : <%= err.status %> </span>
-    <span><%= err.message %> </span>
+        <div class="alert alert-danger col-4 offset-4 alert-dismissible fade show" role="alert">
+            <span>Error : <%= err.status %> </span>
+            <span>
+                <%= err.message %>
+            </span>
+            <div>Please Go To <a href="/">Home</a></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 </body>

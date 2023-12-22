@@ -8,7 +8,6 @@ const category = require("../module/category")
 router.get('/', wrapAsync(async (req, res, next) => {
     const posts = await post.find()
     const categorys = await category.find()
-    req.flash("success", "You loggedIn SuccessFully")
     res.render("index.ejs", { posts, categorys })
 }))
 

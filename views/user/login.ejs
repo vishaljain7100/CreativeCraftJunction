@@ -1,22 +1,22 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
     <div class="row">
-        <div class="col-4" id="signUpDiv">
+        <div class="col-4" id="loginDiv">
             <span class="borderspan">
                 <h5 class="title">Wellcome to wanderLust</h5>
                 <hr>
-                <form action="/User/signUp" method="post" class="needs-validation" id="signUpForm" novalidate>
+                <form action="/user/login" method="post" class="needs-validation" id="loginForm" novalidate>
                     <span>
                         <%if(!error.length==0){ %>
                             <%= error %>
                                 <% }%>
-                                Login
+                                    login
                     </span>
                     <div class="mb-3 form-floating">
-                        <input required type="number" class="form-control" name="user[ContactNumber]" id="number"
+                        <input required type="number" minlength="10" class="form-control" name="ContactNumber" id="number"
                             placeholder="number">
                         <label for="number" class="form-label pl-1"><i
-                                class="fa-solid fa-envelope"></i>&nbsp;NUMBER</label>
+                                class="fa-solid fa-phone"></i>&nbsp;NUMBER</label>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -25,43 +25,7 @@
                         </div>
 
                     </div>
-                    <div class="mb-3 form-floating">
-                        <input required type="text" class="form-control" name="user[username]" id="username"
-                            placeholder="username">
-                        <label for="username" class="form-label pl-1"><i class="fa-solid fa-user"></i>&nbsp;
-                            USERNAME</label>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                        <div class="invalid-feedback">
-                            Username is invalid
-                        </div>
-                    </div>
-                    <div class="mb-3 form-floating">
-                        <input required type="email" class="form-control" name="user[email]" id="email" placeholder="email">
-                        <label for="email" class="form-label pl-1"><i class="fa-solid fa-envelope"></i>&nbsp;
-                            EMAIL</label>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                        <div class="invalid-feedback">
-                            Email is invalid
-                        </div>
-                    </div>
-                    <div class="mb-3 form-floating">
-                        <input required type="password" class="form-control" name="user[password]" id="password"
-                            placeholder="password">
-                        <label for="password" class="form-label pl-1"><i
-                                class="fa-solid fa-lock"></i>&nbsp;PASSWORD</label>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                        <div class="invalid-feedback">
-                            Password is invalid
-                        </div>
-                    </div>
                     <button class="btn btn-outline-warning">Submit</button>
-                    <a href="/user/login/google">google</a>
                 </form>
                 <p>Already have account? <a href="/user/login">Login</a></p>
             </span>
