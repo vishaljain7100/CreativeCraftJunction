@@ -1,5 +1,7 @@
 .main {
-    padding-top: 4rem;
+    padding-top: 3.7rem;
+    height: 100vh;
+    width: 100vw;
 }
 
 .Category-Postcontainer,
@@ -22,8 +24,8 @@
 }
 
 .Category {
-    background-color: #c4c4c4;
-    border: 2px solid #ccc;
+    background-color: #FFA41B;
+    border: 2px solid #FFA41B;
     border-radius: 10px;
 }
 
@@ -52,7 +54,7 @@
     border-radius: 50%;
     height: 9rem;
     width: 9rem;
-    margin-top:5vh ;
+    margin-top: 5vh;
 }
 
 .categoryCard .card-text {
@@ -171,7 +173,6 @@
 .borderspan a {
     color: #ff9f00;
 }
-
 
 /* For Firefox */
 input[type="number"] {

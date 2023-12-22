@@ -1,16 +1,16 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-    <div class="row">
+    <div class="row" id="login">
         <div class="col-4" id="loginDiv">
             <span class="borderspan">
-                <h5 class="title">Wellcome to wanderLust</h5>
+                <img src="/image/symbol.png" alt="logo.png" height="50vh" class="rounded-circle mb-3">
+                <h5 class="title">Wellcome to Creative Craft Juction</h5>
                 <hr>
                 <form action="/user/login" method="post" class="needs-validation" id="loginForm" novalidate>
                     <span>
                         <%if(!error.length==0){ %>
                             <%= error %>
                                 <% }%>
-                                    login
                     </span>
                     <div class="mb-3 form-floating">
                         <input required type="number" minlength="10" class="form-control" name="ContactNumber" id="number"
