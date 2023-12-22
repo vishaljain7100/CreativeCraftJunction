@@ -10,18 +10,18 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
     }
 }, { timestamps: true })
 
 
-// userSchema.methods.generateJWT = async () => {
-//     const token = jwt.sign({
-//         _id: this._id,
-//         ContactNumber: this.ContactNumber
-//     }, process.env.JWT_SECRET_KEY, { expiresIn: "7d" })
-//     return token
-// }
+userSchema.methods.generateJWT = async function () {
+    const token = jwt.sign({
+        _id: this._id,
+        ContactNumber: this.ContactNumber
+    }, process.env.JWT_SECRET_KEY, { expiresIn: "7d" });
+    return token;
+};
 
 const User = new mongoose.model("user", userSchema)
 module.exports = User

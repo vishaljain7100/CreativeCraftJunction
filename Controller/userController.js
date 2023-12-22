@@ -54,16 +54,17 @@ module.exports.verfiySignUp = wrapAsync(async (req, res) => {
     //otp verification and saving users after verification
     if (rightOtpFind.number === ContactNumber && validUser) {
         const newUser = await new User({ email, ContactNumber })
-        await newUser.save().then(res => console.log(res))
-        const token = User.generateJWT()
-        console.log(token)
+        await newUser.save()
+        const token = newUser.generateJWT()
         //deleting otp after user registor
-        await OtpSchema.deleteMany({ number: rightOtpFind.number })
-        return req.status(200).send({
-            message: "user Registration SuccessFull!",
-            token: token,
-            data: result
-        })
+       const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number })
+
+        // res.
+        // return req.status(200).send({
+        //     message: "user Registration SuccessFull!",
+        //     token: token,
+        //     data: result
+        // })
     } else {
         await req.flash('error', "Your OTP Was Wrong")
         res.render("user/otp.ejs", { ContactNumber, email })
