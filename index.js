@@ -18,6 +18,8 @@ const session = require("express-session")
 const User = require("./module/user")
 const UserRoutes = require("./routes/user")
 require("./auth")
+const cookieParser = require('cookie-parser');
+
 
 const log = console.log
 
@@ -30,7 +32,6 @@ const sessionOption = {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000
     }
-
 }
 
 //required middlewares 
@@ -47,6 +48,7 @@ app.use(session(sessionOption))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const db_url = process.env.DATABASE_URL
+app.use(cookieParser());
 
 main()
     .then(res => console.log("Mongodb is connected"))
