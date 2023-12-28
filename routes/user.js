@@ -5,6 +5,7 @@ const { user } = require("../Schema")
 const passport = require("passport")
 const wrapAsync = require("../utility/wrapAsync")
 const { signUp, verfiySignUp } = require('../Controller/userController')
+const { tokenAuth } = require("../middlewares")
 
 //user validation funciton
 const userValidaiton = (req, res, next) => {
@@ -56,6 +57,10 @@ router.get('/auth/google/callback',
     }
 );
 
+
+router.get("/admin",tokenAuth, (req, res) => {
+    res.send("token verified")
+})
 
 
 

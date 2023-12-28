@@ -8,6 +8,13 @@ const _ = require("lodash")
 const axios = require("axios")
 const otpGenerator = require("otp-generator")
 const OtpSchema = require("../module/otp")
+const dotenv = require("dotenv")
+
+dotenv.config()
+const authToken = process.env.Twilio_authToken
+const accountSid = process.env.Twilio_accoundSid
+
+
 
 //sending otp to user
 module.exports.signUp = wrapAsync(async (req, res) => {
@@ -24,20 +31,27 @@ module.exports.signUp = wrapAsync(async (req, res) => {
         digits: true, upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false
     })
 
-    console.log(OTP)
-
     const otp = new OtpSchema({ number: ContactNumber, otp: OTP })
     //hashing otp
     const salt = await bcrypt.genSalt(10)
     otp.otp = await bcrypt.hash(otp.otp, salt)
 
     const result = await otp.save()
-    res.render("user/otp.ejs", { ContactNumber,email })
+    const client = require('twilio')(accountSid, authToken)
+    client.messages
+        .create({
+            body: `Your OTP is : ${OTP}`,
+            from: '+18635765040',
+            to: `+91${ContactNumber}`
+        })
+        .then(message => console.log(message.sid))
+        .done();
+    res.render("user/otp.ejs", { ContactNumber, email })
 })
 
 
 //verify otp sended by user
-module.exports.verfiySignUp = wrapAsync(async (req, res) => {
+module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
     const { ContactNumber, email } = req.body.user
     const { otp } = req.body
     const NumberOtp = otp.join("")
@@ -56,15 +70,18 @@ module.exports.verfiySignUp = wrapAsync(async (req, res) => {
         const newUser = await new User({ email, ContactNumber })
         await newUser.save()
         const token = newUser.generateJWT()
+        await token.then((tokenValue) => {
+            //storing token in cookie storage
+            res.cookie("jwt", `${tokenValue}`, {
+                httpOnly: true,
+                expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            })
+        })
         //deleting otp after user registor
-       const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number })
+        const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number })
 
-        // res.
-        // return req.status(200).send({
-        //     message: "user Registration SuccessFull!",
-        //     token: token,
-        //     data: result
-        // })
+        res.redirect("/user/admin")
     } else {
         await req.flash('error', "Your OTP Was Wrong")
         res.render("user/otp.ejs", { ContactNumber, email })
