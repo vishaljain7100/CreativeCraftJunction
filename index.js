@@ -19,6 +19,9 @@ const User = require("./module/user")
 const UserRoutes = require("./routes/user")
 require("./auth")
 const cookieParser = require('cookie-parser');
+const passport = require("passport")
+const { UserExist } = require("./middlewares")
+const { user } = require("./Schema")
 
 
 const log = console.log
@@ -58,10 +61,20 @@ async function main() {
     await mongoose.connect(db_url)
 }
 
+//checking user is login or not
+app.use((req, res, next) => {
+    if (res.locals.user === undefined || res.locals.user === null) {
+        res.locals.user = null
+        next()
+    }
+})
+
 //flash middle ware for message sending 
 app.use((req, res, next) => {
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
+    res.locals.LoginError = req.flash('LoginError')
+    res.locals.SignUpError = req.flash('SignUpError')
     next()
 })
 
@@ -84,6 +97,7 @@ app.listen(PORT, () => {
 })
 
 // User.getIndexes()
+// User.find({ ContactNumber: "9313743791" }).then(res => console.log(res)).catch(err => console.log(err))
 
 // User.deleteMany({}).then(res => console.log(res))
 

@@ -6,14 +6,14 @@
                 <img src="/image/symbol.png" alt="logo.png" height="50vh" class="rounded-circle mb-3">
                 <h5 class="title">Wellcome to Creative Craft Juction</h5>
                 <hr>
-                <form action="/user/login" method="post" class="needs-validation" id="loginForm" novalidate>
-                    <span>
-                        <%if(!error.length==0){ %>
-                            <%= error %>
+                <form action="/User/login" method="post" class="needs-validation" id="loginForm" novalidate>
+                    <span style="color: red; font-weight: 700;">
+                        <%if(SignUpError.length!==0){ %>
+                            <%= SignUpError %>
                                 <% }%>
                     </span>
                     <div class="mb-3 form-floating">
-                        <input required type="number" minlength="10" class="form-control" name="ContactNumber" id="number"
+                        <input required type="number" minlength="10" class="form-control" name="Number" id="number"
                             placeholder="number">
                         <label for="number" class="form-label pl-1"><i
                                 class="fa-solid fa-phone"></i>&nbsp;NUMBER</label>
