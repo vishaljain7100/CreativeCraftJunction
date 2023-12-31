@@ -15,16 +15,6 @@ dotenv.config()
 const authToken = process.env.Twilio_authToken
 const accountSid = process.env.Twilio_accoundSid
 
-//Expired OTP input Function
-const ExpiredOTP = async (req, res, next) => {
-    const otpHolder = await OtpSchema.find({ number: ContactNumber })
-    if (otpHolder.length === 0) {
-        req.flash('error', "You use an Expired OTP!")
-        res.redirect("/user/signUp")
-        next()
-    }
-}
-
 //sending otp to user
 module.exports.signUp = wrapAsync(async (req, res) => {
     const { ContactNumber, email } = req.body.user
@@ -55,12 +45,17 @@ module.exports.signUp = wrapAsync(async (req, res) => {
 
 
 //verify otp sended by user
-module.exports.verfiySignUp = ExpiredOTP, wrapAsync(async (req, res, next) => {
+module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
     const { ContactNumber, email } = req.body.user
     const { otp } = req.body
     const NumberOtp = otp.join("")
 
-
+    //checking otp is expired or not
+    const otpHolder = await OtpSchema.find({ number: ContactNumber })
+    if (otpHolder.length === 0) {
+        req.flash('error', "You use an Expired OTP!")
+        res.redirect("/user/signUp")
+    }
 
     const rightOtpFind = otpHolder[otpHolder.length - 1]
     const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
@@ -69,7 +64,6 @@ module.exports.verfiySignUp = ExpiredOTP, wrapAsync(async (req, res, next) => {
     if (rightOtpFind.number === ContactNumber && validUser) {
         const newUser = await new User({ email, ContactNumber })
         await newUser.save()
-        console.log(newUser)
         const token = newUser.generateJWT()
         await token.then((tokenValue) => {
             //storing token in cookie storage
@@ -81,11 +75,11 @@ module.exports.verfiySignUp = ExpiredOTP, wrapAsync(async (req, res, next) => {
         })
         //deleting otp after user registor
         const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number })
-
         res.redirect("/")
     } else {
-        await req.flash('error', "Your OTP Was Wrong")
-        res.render("user/otp.ejs", { ContactNumber, email })
+        req.flash('error', "Your OTP Was Wrong")
+        await res.render("user/otp.ejs", { ContactNumber, email, link: "signUp" })
+        // res.redirect("/")
     }
 })
 
@@ -103,16 +97,46 @@ module.exports.login = wrapAsync(async (req, res, next) => {
         digits: true, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false
     })
     const otp = new OtpSchema({ number: Number, otp: OTP })
-    otp.save()
+    await otp.save()
     console.log(OTP)
-    const login = "login"
-    res.render("user/otp.ejs", { ContactNumber: userExistInDb.ContactNumber, email: userExistInDb.email, link: login })
+    const ContactNumber = userExistInDb[0].ContactNumber
+    const email = userExistInDb[0].email
+    res.render("user/otp.ejs", { ContactNumber, email, link: "login" })
 })
 
 module.exports.LoginVerification = wrapAsync(async (req, res, next) => {
     const { ContactNumber } = req.body.user
+    const { otp } = req.body
+    const NumberOtp = otp.join("")
+    console.log(NumberOtp)
+    //checking otp is expired or not
+    const otpHolder = await OtpSchema.find({ number: ContactNumber })
+    if (otpHolder.length === 0) {
+        req.flash('error', "You use an Expired OTP!")
+        res.redirect("/user/signUp")
+    }
 
+    const rightOtpFind = otpHolder[otpHolder.length - 1]
+    console.log(rightOtpFind.otp, NumberOtp)
+    console.log(rightOtpFind.number, ContactNumber)
+    const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
+    console.log(validUser)
 
-
-
+    if (rightOtpFind.number === ContactNumber && validUser) {
+        const token = newUser.generateJWT()
+        await token.then((tokenValue) => {
+            //storing token in cookie storage
+            res.cookie("jwt", `${tokenValue}`, {
+                httpOnly: true,
+                expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            })
+        })
+        //deleting otp after user registor
+        const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number })
+        res.send("/")
+    } else {
+        req.flash("error", "You Entered Wrong OTP")
+        res.redirect("/")
+    }
 })

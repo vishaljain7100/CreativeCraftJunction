@@ -3,17 +3,20 @@
     <div class="otpdiv">
         <p id="error-message" style="color: red;"></p>
         <form action="/user/<%= link %>/Verfication" method="post">
-            <h1>Enter your 4-digit OTP</h1>
-            <p>An OTP has been sent to
-                <%= ContactNumber %>
-            </p>
-            <input type="text" name="user[ContactNumber]" value="<%= ContactNumber%>" hidden>
-            <input type="text" name="user[email]" value="<%= email %>" hidden>
-            <input type="text" id="otp-input" maxlength="1" autocomplete="off" name="otp">
-            <input type="text" id="otp-input" maxlength="1" autocomplete="off" name="otp">
-            <input type="text" id="otp-input" maxlength="1" autocomplete="off" name="otp">
-            <input type="text" id="otp-input" maxlength="1" autocomplete="off" name="otp">
-            <br>
-            <button class="btn-outline-warning" id="submit-btn">Verify</button>
+            <% if(error.length !==0){ %>
+                <%= error %>
+                    <% } %>
+                        <h1>Enter your 4-digit OTP</h1>
+                        <p>An OTP has been sent to
+                            <%= ContactNumber %>
+                        </p>
+                        <input type="text" name="user[ContactNumber]" value="<%= ContactNumber%>" hidden>
+                        <input type="text" name="user[email]" value="<%= email %>" hidden>
+                        <input type="text" id="otp-input" maxlength="1" autocomplete="off" name="otp">
+                        <input type="text" id="otp-input" maxlength="1" autocomplete="off" name="otp">
+                        <input type="text" id="otp-input" maxlength="1" autocomplete="off" name="otp">
+                        <input type="text" id="otp-input" maxlength="1" autocomplete="off" name="otp">
+                        <br>
+                        <button class="btn-outline-warning" id="submit-btn">Verify</button>
         </form>
     </div>

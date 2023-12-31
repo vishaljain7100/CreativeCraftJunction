@@ -4,7 +4,7 @@ const User = require("../module/user")
 const { user } = require("../Schema")
 const passport = require("passport")
 const wrapAsync = require("../utility/wrapAsync")
-const { signUp, verfiySignUp, login } = require('../Controller/userController')
+const { signUp, verfiySignUp, login, LoginVerification } = require('../Controller/userController')
 const { tokenAuth, LogOutFun } = require("../middlewares")
 
 //user validation funciton
@@ -39,6 +39,9 @@ router.post("/login", login)
 
 //login OTP verification
 router.post("/login", login)
+
+//login OTP verification
+router.post("/login/Verfication", LoginVerification)
 
 //logout api
 router.get("/logOut", LogOutFun, (req, res) => {
