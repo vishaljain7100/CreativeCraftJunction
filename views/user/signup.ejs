@@ -8,10 +8,16 @@
                 <h5 class="title">Wellcome to Creative Craft Juction</h5>
                 <hr>
                 <form action="/User/signUp" method="post" class="needs-validation" id="signUpForm" novalidate>
+                    <span style="color: red; font-weight: 700;">
+                        <%if(LoginError.length !==0){ %>
+                            <%= LoginError %>
+                                <% }%>
+                    </span>
                     <div class="mb-3 form-floating">
                         <input required type="number" class="form-control" name="user[ContactNumber]" id="number"
                             placeholder="number">
-                        <label for="number" class="form-label pl-1"><i class="fa-solid fa-phone"></i>&nbsp;NUMBER</label>
+                        <label for="number" class="form-label pl-1"><i
+                                class="fa-solid fa-phone"></i>&nbsp;NUMBER</label>
                         <div class="valid-feedback">
                             Looks good!
                         </div>

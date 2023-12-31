@@ -4,16 +4,12 @@
     z-index: 999;
     width: 100vw;
 }
+.navbar-nav{
+    padding-right: 6vw;
+}
 
 .navbar-toggler>.close {
     display: inline;
-}
-
-.navbar-nav {
-    padding-left: 1vw;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
 }
 
 .navbar-toggler.collapsed>.close,
@@ -22,7 +18,12 @@
 }
 
 .collapse {
-    justify-content: space-between;
+    justify-content: end;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
 }
 
 .container-fluid a {
@@ -41,8 +42,8 @@
     color: white;
 }
 
-.btn i {
-    font-size: x-large;
+.btn-group .btn {
+    color: white;
 }
 
 #logo {
@@ -60,9 +61,13 @@
     position: absolute;
     left: 0%;
     bottom: 10%;
-    height: 3px;
+    height: 6px;
     background-color: #F86F03;
     transition: all ease 1s;
+}
+
+i{
+    color: black;
 }
 
 .nav-link:hover::after {

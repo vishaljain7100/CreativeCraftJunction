@@ -4,8 +4,8 @@ const User = require("../module/user")
 const { user } = require("../Schema")
 const passport = require("passport")
 const wrapAsync = require("../utility/wrapAsync")
-const { signUp, verfiySignUp } = require('../Controller/userController')
-const { tokenAuth } = require("../middlewares")
+const { signUp, verfiySignUp, login } = require('../Controller/userController')
+const { tokenAuth, LogOutFun } = require("../middlewares")
 
 //user validation funciton
 const userValidaiton = (req, res, next) => {
@@ -35,12 +35,15 @@ router.get("/login", (req, res) => {
 })
 
 //login post route
-router.post("/login", wrapAsync(async (req, res, next) => {
-    const { ContactNumber } = req.body
-    const UserInDb = await User.find({ ContactNumber: ContactNumber })
-    if (user) return res.status(400).send()
+router.post("/login", login)
 
-}))
+//login OTP verification
+router.post("/login", login)
+
+//logout api
+router.get("/logOut", LogOutFun, (req, res) => {
+    res.redirect("/")
+})
 
 //login through google
 router.get('/login/google',
@@ -56,13 +59,5 @@ router.get('/auth/google/callback',
         res.redirect("/")
     }
 );
-
-
-router.get("/admin",tokenAuth, (req, res) => {
-    res.send("token verified")
-})
-
-
-
 
 module.exports = router

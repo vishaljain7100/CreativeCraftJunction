@@ -11,17 +11,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <span class="menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"><img width="25" height="25"
-                                src="https://img.icons8.com/metro/26/home.png" alt="home" />&nbsp;Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><img width="25" height="25"
-                                src="https://img.icons8.com/material/24/mail.png" alt="mail" />&nbsp;Contact Us</a>
-                    </li>
-                </span>
-                <span class="user">
+                <%if(user==null){ %>
                     <li class="nav-item">
                         <a class="nav-link" href="/user/signup"><img width="25" height="25"
                                 src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/external-user-medical-kiranshastry-solid-kiranshastry.png"
@@ -32,8 +22,18 @@
                                 src="https://img.icons8.com/material-rounded/24/login-rounded-right.png"
                                 alt="login-rounded-right" />Login</a>
                     </li>
-                </span>
+                    <% }%>
+                        <%if(user !=null){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fa-solid fa-user"></i>&nbsp;Profile</a>
+                            </li>
+                            <% }%>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fa-solid fa-phone"></i>&nbsp;Contact Us</a>
+                                </li>
             </ul>
         </div>
     </div>
+
 </nav>

@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const jwt = require("jsonwebtoken")
+const passport = require("passport")
 
 const userSchema = new Schema({
     ContactNumber: {
