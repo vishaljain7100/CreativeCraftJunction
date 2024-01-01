@@ -59,7 +59,7 @@ module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
 
     const rightOtpFind = otpHolder[otpHolder.length - 1]
     const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
-
+    console.log(validUser)
     //otp verification and saving users after verification
     if (rightOtpFind.number === ContactNumber && validUser) {
         const newUser = await new User({ email, ContactNumber })
@@ -99,16 +99,17 @@ module.exports.login = wrapAsync(async (req, res, next) => {
     const otp = new OtpSchema({ number: Number, otp: OTP })
     await otp.save()
     console.log(OTP)
+
     const ContactNumber = userExistInDb[0].ContactNumber
     const email = userExistInDb[0].email
     res.render("user/otp.ejs", { ContactNumber, email, link: "login" })
 })
 
+//otp verification with db and generating token for valid User
 module.exports.LoginVerification = wrapAsync(async (req, res, next) => {
     const { ContactNumber } = req.body.user
     const { otp } = req.body
     const NumberOtp = otp.join("")
-    console.log(NumberOtp)
     //checking otp is expired or not
     const otpHolder = await OtpSchema.find({ number: ContactNumber })
     if (otpHolder.length === 0) {
@@ -117,13 +118,10 @@ module.exports.LoginVerification = wrapAsync(async (req, res, next) => {
     }
 
     const rightOtpFind = otpHolder[otpHolder.length - 1]
-    console.log(rightOtpFind.otp, NumberOtp)
-    console.log(rightOtpFind.number, ContactNumber)
-    const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
-    console.log(validUser)
-
-    if (rightOtpFind.number === ContactNumber && validUser) {
-        const token = newUser.generateJWT()
+    if (rightOtpFind.number === ContactNumber && NumberOtp === rightOtpFind.otp) {
+        console.log('verificaiton is completed')
+        const user = await User.find({ ContactNumber: ContactNumber })
+        const token = user[0].generateJWT()
         await token.then((tokenValue) => {
             //storing token in cookie storage
             res.cookie("jwt", `${tokenValue}`, {
@@ -134,7 +132,7 @@ module.exports.LoginVerification = wrapAsync(async (req, res, next) => {
         })
         //deleting otp after user registor
         const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number })
-        res.send("/")
+        res.redirect("/")
     } else {
         req.flash("error", "You Entered Wrong OTP")
         res.redirect("/")
