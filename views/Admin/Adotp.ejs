@@ -1,0 +1,22 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+    <div class="otpdiv">
+        <p id="error-message" style="color: red;"></p>
+        <form action="/Admin/Login/Verificaiton" method="post">
+            <% if(error.length !==0){ %>
+                <%= error %>
+                    <% } %>
+                        <h1>Enter your 4-digit OTP</h1>
+                        <p>An OTP has been sent to Admin
+                            <%= ContactNumber %>
+                        </p>
+                        <input type="text" name="Admin[ContactNumber]" value="<%= ContactNumber%>" hidden>
+                        <input type="text" name="Admin[email]" value="<%= email %>" hidden>
+                        <input type="number" id="otp-input" maxlength="1" autocomplete="off" name="otp">
+                        <input type="number" id="otp-input" maxlength="1" autocomplete="off" name="otp">
+                        <input type="number" id="otp-input" maxlength="1" autocomplete="off" name="otp">
+                        <input type="number" id="otp-input" maxlength="1" autocomplete="off" name="otp">
+                        <br>
+                        <button class="btn-outline-warning" id="submit-btn">Verify</button>
+        </form>
+    </div>

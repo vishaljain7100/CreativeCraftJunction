@@ -7,6 +7,9 @@ const { listing } = require("../Schema")
 const { categorySchema } = require("../Schema")
 const post = require("../module/post")
 const category = require("../module/category")
+const Admin = require("../module/Admin")
+const { AdminLoginVerficaiton, AdminLogin } = require("../Controller/AdminController")
+const { AdminExist, LogOutAdmin } = require("../middlewares")
 
 // multer middleware to storge the db in upload folder
 const storage = multer.diskStorage({
@@ -35,7 +38,6 @@ const SchemaValidation = (req, res, next) => {
 const CategorySchemaValidation = (req, res, next) => {
     let result = categorySchema.validate(req.body.category)
     if (result.error) {
-        console.log(result.error)
         req.flash('error', result.error.message)
         res.redirect("/Admin/Category")
     } else {
@@ -44,17 +46,18 @@ const CategorySchemaValidation = (req, res, next) => {
 }
 
 //Admin route
-router.get("/", wrapAsync(async (req, res, next) => {
+router.get("/", AdminExist, wrapAsync(async (req, res, next) => {
     res.render("Admin/Admin.ejs")
 }))
 
 // Add Category (get form route)
-router.get("/Category", (req, res, next) => {
+router.get("/Category", AdminExist, (req, res, next) => {
     res.render("Admin/AddCategory")
 })
 
 // Add Category (Post route)
 router.post("/Category",
+    AdminExist,
     CategorySchemaValidation,
     upload.single("image"),
     wrapAsync(async (req, res, next) => {
@@ -67,12 +70,13 @@ router.post("/Category",
 
 
 // Add Product (get form route)
-router.get("/Product", wrapAsync(async (req, res, next) => {
+router.get("/Product", AdminExist, wrapAsync(async (req, res, next) => {
     res.render('Admin/Addproduct.ejs')
 }))
 
 // Add Product (Post route)
 router.post("/Product",
+    AdminExist,
     SchemaValidation,
     upload.fields([
         { name: "listing[image1]", maxCount: 1 },
@@ -92,5 +96,26 @@ router.post("/Product",
         //     .catch(err => console.log(err))
         // // res.redirect('/Admin')
     }))
+
+//generating OTP for Admin
+router.get("/login", AdminLogin)
+
+//Verifing Admin OTP
+router.post("/Login/Verificaiton", AdminLoginVerficaiton)
+
+//Admin Logout route
+router.get("/logout", AdminExist, LogOutAdmin, wrapAsync(async (req, res) => {
+    res.redirect("/")
+}))
+
+router.all("*", wrapAsync(async (req, res, next) => {
+    throw new ExpressError(404, "Page not found!")
+}))
+
+router.use((err, req, res, next) => {
+    let { status = 500 } = err
+    req.flash("error", status , err.message)
+    res.redirect("/Admin")
+})
 
 module.exports = router

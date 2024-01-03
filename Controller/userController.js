@@ -1,7 +1,5 @@
 const express = require("express")
-const router = express.Router()
 const User = require("../module/user")
-const { user } = require("../Schema")
 const wrapAsync = require("../utility/wrapAsync")
 const bcrypt = require("bcrypt")
 const _ = require("lodash")
@@ -10,10 +8,13 @@ const otpGenerator = require("otp-generator")
 const OtpSchema = require("../module/otp")
 const dotenv = require("dotenv")
 const fast2sms = require("fast2sms")
+const { AdCheck } = require("../middlewares")
+
 
 dotenv.config()
 const authToken = process.env.Twilio_authToken
 const accountSid = process.env.Twilio_accoundSid
+
 
 //sending otp to user
 module.exports.signUp = wrapAsync(async (req, res) => {
@@ -43,7 +44,6 @@ module.exports.signUp = wrapAsync(async (req, res) => {
     res.render("user/otp.ejs", { ContactNumber, email, link: signUp })
 })
 
-
 //verify otp sended by user
 module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
     const { ContactNumber, email } = req.body.user
@@ -59,7 +59,6 @@ module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
 
     const rightOtpFind = otpHolder[otpHolder.length - 1]
     const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
-    console.log(validUser)
     //otp verification and saving users after verification
     if (rightOtpFind.number === ContactNumber && validUser) {
         const newUser = await new User({ email, ContactNumber })
@@ -83,7 +82,7 @@ module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
     }
 })
 
-//login otp verification
+//sending otp to user
 module.exports.login = wrapAsync(async (req, res, next) => {
     const { Number } = req.body
     const userExistInDb = await User.find({ ContactNumber: Number })
@@ -93,6 +92,7 @@ module.exports.login = wrapAsync(async (req, res, next) => {
         res.redirect("/user/signUp")
         next()
     }
+
     const OTP = otpGenerator.generate(4, {
         digits: true, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false
     })
@@ -102,6 +102,7 @@ module.exports.login = wrapAsync(async (req, res, next) => {
 
     const ContactNumber = userExistInDb[0].ContactNumber
     const email = userExistInDb[0].email
+
     res.render("user/otp.ejs", { ContactNumber, email, link: "login" })
 })
 
@@ -114,12 +115,12 @@ module.exports.LoginVerification = wrapAsync(async (req, res, next) => {
     const otpHolder = await OtpSchema.find({ number: ContactNumber })
     if (otpHolder.length === 0) {
         req.flash('error', "You use an Expired OTP!")
-        res.redirect("/user/signUp")
+        res.redirect("/user/login")
     }
 
     const rightOtpFind = otpHolder[otpHolder.length - 1]
+    const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
     if (rightOtpFind.number === ContactNumber && NumberOtp === rightOtpFind.otp) {
-        console.log('verificaiton is completed')
         const user = await User.find({ ContactNumber: ContactNumber })
         const token = user[0].generateJWT()
         await token.then((tokenValue) => {
@@ -138,3 +139,4 @@ module.exports.LoginVerification = wrapAsync(async (req, res, next) => {
         res.redirect("/")
     }
 })
+
