@@ -4,18 +4,37 @@ const User = require("../module/user")
 const { user } = require("../Schema")
 const passport = require("passport")
 const wrapAsync = require("../utility/wrapAsync")
-const { signUp, verfiySignUp, login, LoginVerification } = require('../Controller/userController')
+const { signUp, verfiySignUp, login, LoginVerification, AdminLoginVerficaiton } = require('../Controller/userController')
 const { tokenAuth, LogOutFun } = require("../middlewares")
+const Admin = require("../module/Admin")
 
 //user validation funciton
 const userValidaiton = (req, res, next) => {
     const result = user.validate(req.body.user)
     if (result.error) {
-        console.log(result.error)
         req.flash("error", result.error.message)
         res.redirect('/user/signUp')
     } else {
         next()
+    }
+}
+
+//checking Person who is login is Admin
+const AdCheck = async (req, res, next) => {
+    const { Number } = req.body
+    const admin = await Admin.find({ ContactNumber: Number })
+    if (admin.length === 0) {
+        next()
+    } else {
+        const ContactNumber = admin[0].ContactNumber
+        req.flash("success", "Welcome Abmin Enter the OTP")
+        res.cookie("Admin", `${ContactNumber}`, {
+            httpOnly: true,
+            expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            signed: true
+        })
+        res.redirect("/Admin/login")
     }
 }
 
@@ -34,11 +53,8 @@ router.get("/login", (req, res) => {
     res.render("user/login")
 })
 
-//login post route
-router.post("/login", login)
-
 //login OTP verification
-router.post("/login", login)
+router.post("/login", AdCheck, login)
 
 //login OTP verification
 router.post("/login/Verfication", LoginVerification)

@@ -22,6 +22,7 @@ const cookieParser = require('cookie-parser');
 const passport = require("passport")
 const { UserExist } = require("./middlewares")
 const { user } = require("./Schema")
+const Admin = require("./module/Admin")
 
 
 const log = console.log
@@ -51,7 +52,7 @@ app.use(session(sessionOption))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const db_url = process.env.DATABASE_URL
-app.use(cookieParser());
+app.use(cookieParser("This is the admin"));
 
 main()
     .then(res => console.log("Mongodb is connected"))
@@ -68,6 +69,7 @@ app.use((req, res, next) => {
         next()
     }
 })
+
 
 //flash middle ware for message sending 
 app.use((req, res, next) => {
@@ -95,6 +97,12 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 })
+
+// const a = async ()=>{
+//    const NewAdmin = await new Admin({ ContactNumber: 9313743791, email: "vishaljain7100@gmail.com" })
+//    NewAdmin.save().then(res => console.log(res))
+// }
+
 
 // User.getIndexes()
 // User.find({ ContactNumber: "9313743791" }).then(res => console.log(res)).catch(err => console.log(err))

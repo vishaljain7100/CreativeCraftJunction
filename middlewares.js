@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 // console.log(jwt)
 const wrapAsync = require("./utility/wrapAsync")
 const ExpressError = require("./utility/ExpressError")
+const Admin = require("./module/Admin")
 
 module.exports.tokenAuth = wrapAsync(async (req, res, next) => {
     try {
@@ -39,3 +40,27 @@ module.exports.UserExist = (req, res, next) => {
         next()
     }
 }
+
+module.exports.AdminExist = (req, res, next) => {
+    const token = req.cookies.jwtAdmin
+    if (token != undefined) {
+        const verifyUser = jwt.verify(token, process.env.JWT_SECRET_KEY)
+        res.locals.user = verifyUser
+        next()
+    }
+    else {
+        req.flash("error", "You are not Admin!")
+        res.redirect("/")
+    }
+}
+
+//Admin Logout
+module.exports.LogOutAdmin = wrapAsync(async (req, res, next) => {
+    const token = req.cookies.jwtAdmin
+    const verifyUser = jwt.verify(token, process.env.JWT_SECRET_KEY)
+    if (verifyUser) {
+        res.clearCookie("jwtAdmin")
+        req.flash("success", "You logOut SuccessFully")
+        next()
+    }
+})
