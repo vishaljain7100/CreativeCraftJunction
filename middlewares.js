@@ -1,11 +1,7 @@
-const User = require("./module/user")
 const jwt = require("jsonwebtoken")
-
-// console.log(jwt)
 const wrapAsync = require("./utility/wrapAsync")
-const ExpressError = require("./utility/ExpressError")
-const Admin = require("./module/Admin")
 
+//Authenticaiton of token(user)
 module.exports.tokenAuth = wrapAsync(async (req, res, next) => {
     try {
         const token = req.cookies.jwt
@@ -18,6 +14,7 @@ module.exports.tokenAuth = wrapAsync(async (req, res, next) => {
     }
 })
 
+//Logout function for user
 module.exports.LogOutFun = wrapAsync(async (req, res, next) => {
     const token = req.cookies.jwt
     const verifyUser = jwt.verify(token, process.env.JWT_SECRET_KEY)
@@ -28,6 +25,7 @@ module.exports.LogOutFun = wrapAsync(async (req, res, next) => {
     }
 })
 
+//Checking User is login or signUp or not (User Exist or not in db)
 module.exports.UserExist = (req, res, next) => {
     const token = req.cookies.jwt
     if (token != undefined) {
@@ -41,6 +39,7 @@ module.exports.UserExist = (req, res, next) => {
     }
 }
 
+//Checking Admin Exist or not in DB
 module.exports.AdminExist = (req, res, next) => {
     const token = req.cookies.jwtAdmin
     if (token != undefined) {

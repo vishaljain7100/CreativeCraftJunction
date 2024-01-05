@@ -114,7 +114,7 @@ router.all("*", wrapAsync(async (req, res, next) => {
 
 router.use((err, req, res, next) => {
     let { status = 500 } = err
-    req.flash("error", status , err.message)
+    req.flash("error", status, err.message)
     res.redirect("/Admin")
 })
 
