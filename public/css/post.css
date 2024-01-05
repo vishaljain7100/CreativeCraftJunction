@@ -76,6 +76,7 @@
     height: 15rem;
     overflow: hidden;
     object-fit: cover;
+    border-radius: 7%;
 }
 
 .Postcontainer .card {
