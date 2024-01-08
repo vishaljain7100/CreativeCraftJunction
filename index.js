@@ -14,7 +14,7 @@ const categoryData = require("./init/categoryData")
 const flash = require("connect-flash")
 const session = require("express-session")
 const UserRoutes = require("./routes/user")
-require("./auth")
+// require("./auth")
 const cookieParser = require('cookie-parser');
 const passport = require("passport")
 const post = require("./module/post")
@@ -101,6 +101,7 @@ app.listen(PORT, () => {
 //    NewAdmin.save().then(res => console.log(res))
 // }
 
+// a()
 
 // User.getIndexes()
 // User.find({ ContactNumber: "9313743791" }).then(res => console.log(res)).catch(err => console.log(err))
