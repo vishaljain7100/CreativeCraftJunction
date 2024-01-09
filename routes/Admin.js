@@ -12,6 +12,7 @@ const { AdminLoginVerficaiton, AdminLogin } = require("../Controller/AdminContro
 const { AdminExist, LogOutAdmin } = require("../middlewares")
 const fs = require("fs")
 const { listIndexes } = require("../module/otp")
+const { runInNewContext } = require("vm")
 
 // multer middleware to storge the db in upload folder
 const storage = multer.diskStorage({
@@ -86,32 +87,21 @@ router.get("/Product", AdminExist, wrapAsync(async (req, res, next) => {
 // Add Product (Post route)
 router.post("/Product",
     AdminExist,
-    upload.fields(
-        [
-            { name: 'listing[image1]', maxCount: 1 },
-            { name: 'listing[image2]', maxCount: 1 },
-            { name: 'listing[image3]', maxCount: 1 }
-        ]
-    ),
+    upload.array("listing[image]", 3),
     SchemaValidation,
     wrapAsync(async (req, res, next) => {
-        console.log(req.files.length)
-        const image1 = req.files["listing[image1]"][0].filename
-        const image2 = req.files["listing[image2]"][0].filename
-        const image3 = req.files["listing[image3]"][0].filename
-
-        // if(image2)
-        console.log(image2)
-        const  listing  = req.body.listing
-
+        const listing = req.body.listing
+        const image = []
+        for (let i = 0; i < req.files.length; i++) {
+            image.push(req.files[i]["filename"])
+        }
+        // Saving the images to cloudinary and getting back their url's
         const Post = await new post({
             title: listing.title, description: listing.description, price: listing.price,
-            productId: listing.productId, categoryId: listing.categoryId, categoryName: listing.categoryName, image1: image1, image2: image2, image3: image3
+            productId: listing.productId, categoryId: listing.categoryId, categoryName: listing.categoryName, image1: image[0], image2: image[1], image3: image[3]
         })
-        Post.save().then(res => console.log(res))
-
-
-        // console.log(image1, image2, image3)
+        await Post.save()
+        res.redirect("/")
     }
     )
 )
