@@ -1,15 +1,16 @@
 <% layout("/Admin/AdminLayout/boilerplate.ejs") %>
 
     <body>
-        <form action="/Admin/Product" method="post" class="needs-validation" novalidate>
+        <form action="/Admin/Product" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
             <div class="row main-row col-8 offset-2"
-            style="margin-top: 5rem;margin-bottom: 5rem; justify-content: center;">
-            <%if(error.length !==0){ %>
-                <div class="alert alert-danger alert-dismissible fade show col-8" role="alert">
-                    <%= error %>
-                        <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <%}%>
+                style="margin-top: 5rem;margin-bottom: 5rem; justify-content: center;">
+                <%if(error.length !==0){ %>
+                    <div class="alert alert-danger alert-dismissible fade show col-8" role="alert">
+                        <%= error %>
+                            <button type="button" class="btn-close " data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                    </div>
+                    <%}%>
                         <div class="row">
                             <div class="Title description col-md-6">
                                 <div class="mb-3 form-floating">
@@ -103,6 +104,6 @@
                             </div>
                         </div>
                         <button class="btn btn-outline-warning">Add</button>
-                    </div>
+            </div>
         </form>
     </body>
