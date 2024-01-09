@@ -18,7 +18,6 @@ module.exports = {
 
     categorySchema: Joi.object({
         categoryName: Joi.string().required(),
-        categoryId: Joi.string().required(),
-        image: Joi.string().required()
+        categoryId: Joi.number().required()
     }).required()
 }
