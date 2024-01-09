@@ -1,0 +1,33 @@
+<% layout("/Admin/AdminLayout/boilerplate.ejs") %>
+
+    <body>
+        <div class="row" id="editDiv">
+            <form action="/Admin/Category/Edit/<%= Categorys[0].categoryId %>?_method=PATCH" method="post" novalidate
+                class="needs-validation" id="editForm">
+                <div class="details col-md-6">
+                    <div class="mb-4">
+                        <label for="title" class="form-label">Title</label>
+                        <input required type="text" class="form-control" value="<%= Categorys[0].categoryName %>"
+                            name="category[categoryName]" id="title">
+                        <div class="invalid-feedback">
+                            Invalid Title
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="id" class="form-label">Id</label>
+                        <input required type="number" class="form-control" value="<%= Categorys[0].categoryId %>"
+                            name="category[categoryId]" id="id">
+                        <div class="invalid-feedback">
+                            Invalid id
+                        </div>
+                    </div>
+                    <button class="btn add-new btn-primary" type="submit">Add</button>
+                </div>
+                <div id="slide">
+                    <div class="card" style="width: 18rem;">
+                        <img src="<%= Categorys[0].image %>" class="card-img-top" alt="...">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>

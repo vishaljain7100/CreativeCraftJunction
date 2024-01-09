@@ -1,27 +1,32 @@
 <body>
     <!-- navbar file -->
-    <% layout("/layouts/boilerplate.ejs") %>
+    <% layout("/Admin/AdminLayout/boilerplate.ejs") %>
         <h3 id="Category-text">
             Category's
         </h3>
         <div class="Category-Postcontainer">
             <% for(let i=0; i<AllCategorys.length; i++){ %>
-                    <div class="card">
-                        <div class="picture picture-category">
-                            <img src="<%= AllCategorys[i].image %>" class="card-img-top" alt="img">
-                        </div>
-                        <div class="aboutProduct-category">
-                            <h5 class="Product-title">
-                                <img width="20" height="20" src="https://img.icons8.com/fluency/48/collect.png"
-                                    alt="collect" />
-                                <%= AllCategorys[i].categoryName %>
-                            </h5>
-                            <h6 id="Price" class="mb-3"><i class="fa-solid fa-indian-rupee-sign"></i>
-                                <%= AllCategorys[i].categoryId %>
-                            </h6>
-                        </div>
+                <div class="card">
+                    <div class="picture picture-category">
+                        <img src="<%= AllCategorys[i].image %>" class="card-img-top" alt="img">
                     </div>
-                </a>
+                    <div class="aboutProduct-category">
+                        <h5 class="Product-title">
+                            <img width="20" height="20" src="https://img.icons8.com/fluency/48/collect.png"
+                                alt="collect" />
+                            <%= AllCategorys[i].categoryName %>
+                        </h5>
+                        <h6 id="Price" class="mb-3">
+                            <%= AllCategorys[i].categoryId %>
+                        </h6>
+                        <form action="/Admin/Category/Edit/<%=AllCategorys[i].categoryId%> " method="get">
+                            <button class="edit">Edit</button>
+                        </form>
+                        <form action="/Admin/Delete/<%= AllCategorys[i].categoryId %>">
+                            <button class="delete">Delete</button>
+                        </form>
+                    </div>
+                </div>
                 <% } %>
         </div>
 </body>
