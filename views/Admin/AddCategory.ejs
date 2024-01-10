@@ -1,8 +1,10 @@
-<% layout("/Admin/AdminLayout/boilerplate.ejs") %>
-
-    <body>
+<body>
+    <% layout("/Admin/AdminLayout/boilerplate.ejs") %>
+        <h3 id="Category-text">
+            Add Category
+        </h3>
         <form action="/Admin/Category" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-            <div class="row col-8 offset-2 " style="margin-top: 5rem;margin-bottom: 5rem; justify-content: center;">
+            <div class="row col-8 offset-2 " style="justify-content: center;">
                 <div class="mb-3 form-floating">
                     <input required type="text" class="form-control" name="category[categoryName]" id="title"
                         placeholder="Title">
@@ -30,4 +32,4 @@
                 <button class="btn add-new btn-outline-warning">Add</button>
             </div>
         </form>
-    </body>
+</body>

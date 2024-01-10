@@ -2,25 +2,25 @@
     <!-- navbar file -->
     <% layout("/Admin/AdminLayout/boilerplate.ejs") %>
         <h3 id="Category-text">
-            Category's
+            Product's
         </h3>
         <div class="Category-Postcontainer">
-            <% for(let i=0; i<AllCategorys.length; i++){ %>
+            <% for(let i=0; i<AllProducts.length; i++){ %>
                 <div class="card">
                     <div class="picture picture-category">
-                        <img src="/uploads/<%= AllCategorys[i].image %>" class="card-img-top" alt="">
+                        <img src="/uploads/<%= AllProducts[i].image1 %>" class="card-img-top" alt="img">
                     </div>
                     <div class="aboutProduct-category">
-                        <h5 class="Product-title">
+                        <h5 class="Product-title mb-3">
                             <img width="20" height="20" src="https://img.icons8.com/fluency/48/collect.png"
                                 alt="collect" />
-                            <%= AllCategorys[i].categoryName %>
+                            <%= AllProducts[i].title %>
                         </h5>
                         <div class="buttons">
-                            <form action="/Admin/Category/Edit/<%=AllCategorys[i].categoryId%> " method="get">
+                            <form action="/Admin/Product/Edit/<%=AllProducts[i].productId%> " method="get">
                                 <button class="edit btn btn-info">Edit</button>
                             </form>
-                            <form action="/Admin/Delete/<%= AllCategorys[i].categoryId %>">
+                            <form action="/Admin/Category/Delete/<%= AllProducts[i].productId %>">
                                 <button class="delete btn btn-danger">Delete</button>
                             </form>
                         </div>
