@@ -11,7 +11,7 @@ const Admin = require("../module/Admin")
 const { AdminLoginVerficaiton, AdminLogin } = require("../Controller/AdminController")
 const { AdminExist, LogOutAdmin } = require("../middlewares")
 const fs = require("fs")
-const { AddProduct, AddCategory, editCategory } = require("../Controller/ProductController")
+const { AddProduct, AddCategory, editCategory, editProduct } = require("../Controller/ProductController")
 
 // multer middleware to storge the db in upload folder
 const storage = multer.diskStorage({
@@ -72,19 +72,6 @@ router.post("/Category",
     AddCategory
 )
 
-// Add Product (get form route)
-router.get("/Product", AdminExist, wrapAsync(async (req, res, next) => {
-    res.render('Admin/Addproduct.ejs')
-}))
-
-// Add Product (Post route)
-router.post("/Product",
-    AdminExist,
-    upload.array("listing[image]", 3),
-    SchemaValidation,
-    AddProduct
-)
-
 //category view route
 router.get('/ViewCategory', async (req, res) => {
     const AllCategorys = await category.find({})
@@ -102,12 +89,46 @@ router.get('/Category/Edit/:id', async (req, res) => {
 router.post("/Category/Edit/:id", CategorySchemaValidation, editCategory)
 
 //Delete Category 
-router.get("/Delete/:id", wrapAsync(async (req, res) => {
+router.get("/Category/Delete/:id", wrapAsync(async (req, res) => {
     const { id } = req.params
     await category.findOneAndDelete({ categoryId: id }).then(res => console.log(res))
     req.flash("success", "Category Deleted Successfully")
     res.redirect('/Admin')
 }))
+
+// Add Product (get form route)
+router.get("/Product", AdminExist, wrapAsync(async (req, res, next) => {
+    res.render('Admin/Addproduct.ejs')
+}))
+
+// Add Product (Post route)
+router.post("/Product",
+    AdminExist,
+    upload.array("listing[image]", 3),
+    SchemaValidation,
+    AddProduct
+)
+
+//Product view route
+router.get('/ViewProduct', async (req, res) => {
+    const AllProducts = await post.find({})
+    res.render("Admin/showProduct.ejs", { AllProducts })
+})
+
+// Product Edit
+router.get('/Product/Edit/:id', async (req, res) => {
+    const { id } = req.params
+    const Products = await post.find({ productId: id })
+    res.render("Admin/EditProduct.ejs", { Products })
+})
+
+//Product Edit post
+router.post("/Product/Edit/:id",
+    upload.array("listing[newImage]", 3),
+    editProduct
+)
+
+
 
 //generating OTP for Admin
 router.get("/login", AdminLogin)
