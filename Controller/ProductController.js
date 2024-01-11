@@ -43,7 +43,7 @@ module.exports.AddProduct = wrapAsync(async (req, res, next) => {
 // Edit product
 module.exports.editProduct = wrapAsync(async (req, res) => {
     const listing = req.body.listing;
-    console.log("req.files = " , req.files)
+    console.log("req.files = ", req.files)
 
     const { id } = req.params;
     const image = [];
@@ -51,14 +51,13 @@ module.exports.editProduct = wrapAsync(async (req, res) => {
     // Loop through each image and checkbox
     for (let i = 1; i <= 3; i++) {
         const changeImage = req.body[`changeImage${i}`] === 'on';
-        
+
         if (changeImage && req.files[i - 1]) {
             image.push(req.files[i - 1].filename);
         } else {
             image.push(listing[`image${i}`]);
         }
     }
-    console.log(image)
 
     // Update the post with the new data
     const updatedPost = await post.findOneAndUpdate({ productId: id }, {
