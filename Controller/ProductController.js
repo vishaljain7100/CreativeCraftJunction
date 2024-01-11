@@ -17,7 +17,6 @@ module.exports.AddCategory = wrapAsync(async (req, res, next) => {
 module.exports.editCategory = wrapAsync(async (req, res) => {
     const { id } = req.params
     const { categoryId, categoryName } = req.body.category
-    console.log(categoryId, categoryName)
     const categoryData = await category.findOneAndUpdate({ categoryId: id }, { categoryName: categoryName, categoryId: categoryId })
     req.flash("success", "Category is Update")
     res.redirect("/Admin")
@@ -33,7 +32,7 @@ module.exports.AddProduct = wrapAsync(async (req, res, next) => {
     // Saving the images to cloudinary and getting back their url's
     const Post = await new post({
         title: listing.title, description: listing.description, price: listing.price,
-        productId: listing.productId, categoryId: listing.categoryId, categoryName: listing.categoryName, image1: image[0], image2: image[1], image3: image[3]
+        productId: listing.productId, categoryId: listing.categoryId, categoryName: listing.categoryName, image1: image[0], image2: image[1], image3: image[2]
     })
     await Post.save()
     res.redirect("/Admin")
@@ -43,7 +42,6 @@ module.exports.AddProduct = wrapAsync(async (req, res, next) => {
 // Edit product
 module.exports.editProduct = wrapAsync(async (req, res) => {
     const listing = req.body.listing;
-    console.log("req.files = ", req.files)
 
     const { id } = req.params;
     const image = [];
@@ -71,8 +69,6 @@ module.exports.editProduct = wrapAsync(async (req, res) => {
         image2: image[1],
         image3: image[2]
     });
-
-    console.log("post is updated");
     req.flash("success", "Post Updated Successfully");
     return res.redirect(`/Admin/ViewProduct`);
 });
