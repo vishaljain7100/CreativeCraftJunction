@@ -18,10 +18,22 @@
                         </h5>
                         <div class="buttons">
                             <form action="/Admin/Product/Edit/<%=AllProducts[i].productId%> " method="get">
-                                <button class="edit btn btn-info">Edit</button>
+                                <button class="button-1 edit-btn" role="button">
+                                    <span class="button-1-shadow"></span>
+                                    <span class="button-1-edge"></span>
+                                    <span class="button-1-front text">
+                                        Edit
+                                    </span>
+                                </button>
                             </form>
                             <form action="/Admin/Category/Delete/<%= AllProducts[i].productId %>">
-                                <button class="delete btn btn-danger">Delete</button>
+                                <button class="button-1" role="button">
+                                    <span class="button-1-shadow"></span>
+                                    <span class="button-1-edge"></span>
+                                    <span class="button-1-front text">
+                                        Delete
+                                    </span>
+                                </button>
                             </form>
                         </div>
                     </div>
