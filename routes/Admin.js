@@ -93,7 +93,7 @@ router.get("/Category/Delete/:id", wrapAsync(async (req, res) => {
     const { id } = req.params
     await category.findOneAndDelete({ categoryId: id }).then(res => console.log(res))
     req.flash("success", "Category Deleted Successfully")
-    res.redirect('/Admin')
+    res.redirect('/Admin/ViewCategory')
 }))
 
 // Add Product (get form route)
@@ -128,7 +128,13 @@ router.post("/Product/Edit/:id",
     editProduct
 )
 
-
+//Delete Product 
+router.get("/Product/Delete/:id", wrapAsync(async (req, res) => {
+    const { id } = req.params
+    await post.findOneAndDelete({ productId: id })
+    req.flash("success", "Product Deleted Successfully")
+    res.redirect('/Admin/ViewProduct')
+}))
 
 //generating OTP for Admin
 router.get("/login", AdminLogin)

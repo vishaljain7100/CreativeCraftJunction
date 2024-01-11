@@ -2,8 +2,16 @@
 
     <body>
         <div class="row" id="editDiv">
+            <h3 id="Category-text">
+                Edit Category
+            </h3>
             <form action="/Admin/Category/Edit/<%= Categorys[0].categoryId %>?_method=PATCH" method="post" novalidate
                 class="needs-validation" id="editForm">
+                <div id="slide">
+                    <div class="card" style="width: 18rem;">
+                        <img src="/uploads/<%= Categorys[0].image %>" class="card-img-top" alt="...">
+                    </div>
+                </div>
                 <div class="details col-md-6">
                     <div class="mb-4">
                         <label for="title" class="form-label">Title</label>
@@ -22,11 +30,6 @@
                         </div>
                     </div>
                     <button class="button-33" role="button">ADD</button>
-                </div>
-                <div id="slide">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<%= Categorys[0].image %>" class="card-img-top" alt="...">
-                    </div>
                 </div>
             </form>
         </div>
