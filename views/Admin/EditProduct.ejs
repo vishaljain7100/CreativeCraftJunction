@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="mb-3 form-floating">
-                            <input required type="text" class="form-control" <%=Products[0].description %>
+                            <input required type="text" class="form-control" value="<%=Products[0].description %>"
                             name="listing[description]"
                             id="Description" placeholder="Description">
                             <label for="Description" class="form-label pl-1"><img width="25" height="25"
@@ -117,10 +117,10 @@
                                 value="<%= Products[0].image1 %>">
                             <input type="file" class="form-control" style="margin-top: 5px;" name="listing[newImage]"
                                 id="newImage1">
-                            <label>
+                            <div class="img1 mb-4 checkbox-container">
                                 <input type="checkbox" name="changeImage1" id="changeImage1">
-                                Change Image 1
-                            </label>
+                                <label for="changeImage1">Change Image 1</label>
+                            </div>
                             <div class="invalid-feedback">
                                 Image 1 required
                             </div>
@@ -130,10 +130,10 @@
                                 value="<%= Products[0].image2 %>">
                             <input type="file" class="form-control" style="margin-top: 5px;" name="listing[newImage]"
                                 id="newImage2">
-                            <label>
+                            <div class="img2 mb-4 checkbox-container">
                                 <input type="checkbox" name="changeImage2" id="changeImage2">
-                                Change Image 2
-                            </label>
+                                <label for="changeImage2">Change Image 2</label>
+                            </div>
                             <div class="invalid-feedback">
                                 Image 2 required
                             </div>
@@ -143,10 +143,9 @@
                                 value="<%= Products[0].image3 %>">
                             <input type="file" class="form-control" style="margin-top: 5px;" name="listing[newImage]"
                                 id="newImage3">
-                            <div class="checkbox-wrapper-34">
-                                <input class='tgl tgl-ios' id='toggle-34 changeImage3' name="changeImage3"
-                                    type='checkbox'>
-                                <label class='tgl-btn' for='toggle-34'></label>
+                            <div class="img3 mb-4 checkbox-container">
+                                <input type="checkbox" name="changeImage3" id="changeImage3">
+                                <label for="changeImage3">Change Image 3</label>
                             </div>
                             <div class="invalid-feedback">
                                 Image 3 required

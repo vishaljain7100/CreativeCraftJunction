@@ -119,6 +119,7 @@ router.get('/ViewProduct', async (req, res) => {
 router.get('/Product/Edit/:id', async (req, res) => {
     const { id } = req.params
     const Products = await post.find({ productId: id })
+    console.log(Products)
     res.render("Admin/EditProduct.ejs", { Products })
 })
 
