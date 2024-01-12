@@ -21,7 +21,7 @@ const post = require("./module/post")
 const category = require("./module/category")
 const User = require("./module/user")
 const Admin = require("./module/Admin")
-
+require("./auth")
 
 const log = console.log
 
@@ -52,6 +52,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const db_url = process.env.DATABASE_URL
 app.use(cookieParser("This is the admin"));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 main()
     .then(res => console.log("Mongodb is connected"))
@@ -94,7 +97,7 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/Admin`)
+    console.log(`Server is running on http://localhost:${PORT}`)
 })
 
 // const a = async ()=>{
