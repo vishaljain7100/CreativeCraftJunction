@@ -45,13 +45,13 @@ module.exports.editProduct = wrapAsync(async (req, res) => {
 
     const { id } = req.params;
     const image = [];
-
     // Loop through each image and checkbox
     for (let i = 1; i <= 3; i++) {
         const changeImage = req.body[`changeImage${i}`] === 'on';
+        const uploadedFiles = req.files[`listing[newImage${i}]`];
 
-        if (changeImage && req.files[i - 1]) {
-            image.push(req.files[i - 1].filename);
+        if (changeImage && uploadedFiles && uploadedFiles.length > 0) {
+            image.push(uploadedFiles[0].filename);
         } else {
             image.push(listing[`image${i}`]);
         }
