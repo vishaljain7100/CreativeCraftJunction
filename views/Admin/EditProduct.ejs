@@ -9,7 +9,7 @@
                 method="post" novalidate class="needs-validation" id="editForm">
                 <div id="mainDiv">
                     <div class="details col-md-4">
-                        <div class="mb-3 form-floating">
+                        <div class="mb-4 form-floating">
                             <input required type="text" class="form-control" value="<%= Products[0].title %>"
                                 name="listing[title]" id="title" placeholder="Title">
                             <label for="title" class="form-label pl-1"><img width="25" height="25"
@@ -19,7 +19,7 @@
                                 Invalid Title
                             </div>
                         </div>
-                        <div class="mb-3 form-floating">
+                        <div class="mb-4 form-floating">
                             <input required type="text" class="form-control" value="<%=Products[0].description %>"
                             name="listing[description]"
                             id="Description" placeholder="Description">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="mb-2 col-md-6 form-floating">
+                            <div class="mb-4 col-md-6 form-floating">
                                 <input required type="number" value="<%= Products[0].price %>" class="form-control"
                                     name="listing[price]" id="Price" placeholder="1,200">
                                 <label for="Price" class="form-label"> <img width="30" height="30"
@@ -42,7 +42,7 @@
                                     Enter Valid Price
                                 </div>
                             </div>
-                            <div class="mb-2 col-md-6 form-floating">
+                            <div class="mb-4 col-md-6 form-floating">
                                 <input required type="text" class="form-control" value="<%= Products[0].productId %>"
                                     name="listing[productId]" id="Price" placeholder="1,200">
                                 <label for="productId" class="form-label"><img width="30" height="30"
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="mb-2 col-md-6 form-floating">
+                            <div class="mb-4 col-md-6 form-floating">
                                 <input required type="text" value="<%= Products[0].categoryName %>" class="form-control"
                                     name="listing[categoryName]" id="categoryName" placeholder="categoryName">
                                 <label for="categoryName" class="form-label pl-1"><img width="30" height="30"
@@ -66,7 +66,7 @@
                                     Invalid Category Name
                                 </div>
                             </div>
-                            <div class="mb-2 col-md-6 form-floating">
+                            <div class="mb-4 col-md-6 form-floating">
                                 <input required type="number" class="form-control" value="<%= Products[0].categoryId %>"
                                     name="listing[categoryId]" id="categoryId" placeholder="categoryId">
                                 <label for="categoryId" class="form-label pl-1"><img width="30" height="30"

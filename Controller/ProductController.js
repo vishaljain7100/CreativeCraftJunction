@@ -10,7 +10,7 @@ module.exports.AddCategory = wrapAsync(async (req, res, next) => {
     const categoryData = await new category({ categoryName: categoryName, categoryId: categoryId, image: image })
     await categoryData.save()
     req.flash("success", "Category Added Successfully")
-    res.redirect("/Admin")
+    res.redirect("/Admin/ViewCategory")
 })
 
 //Edit Cateogry
@@ -19,7 +19,7 @@ module.exports.editCategory = wrapAsync(async (req, res) => {
     const { categoryId, categoryName } = req.body.category
     const categoryData = await category.findOneAndUpdate({ categoryId: id }, { categoryName: categoryName, categoryId: categoryId })
     req.flash("success", "Category is Update")
-    res.redirect("/Admin")
+    res.redirect("/Admin/ViewCategory")
 })
 
 //Adding Products
@@ -35,19 +35,21 @@ module.exports.AddProduct = wrapAsync(async (req, res, next) => {
         productId: listing.productId, categoryId: listing.categoryId, categoryName: listing.categoryName, image1: image[0], image2: image[1], image3: image[2]
     })
     await Post.save()
-    res.redirect("/Admin")
+    req.flash("success", "Product Added Successfully")
+    res.redirect("/Admin/ViewProduct")
 })
 
 
 // Edit product
 module.exports.editProduct = wrapAsync(async (req, res) => {
     const listing = req.body.listing;
-
     const { id } = req.params;
     const image = [];
     // Loop through each image and checkbox
     for (let i = 1; i <= 3; i++) {
+        //checking checkbox is true or false
         const changeImage = req.body[`changeImage${i}`] === 'on';
+        //getting new photo
         const uploadedFiles = req.files[`listing[newImage${i}]`];
 
         if (changeImage && uploadedFiles && uploadedFiles.length > 0) {
