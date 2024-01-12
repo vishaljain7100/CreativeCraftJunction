@@ -20,6 +20,10 @@
     padding: 2%;
 }
 
+.slide{
+    padding-top: 0;
+}
+
 .slide {
     height: 27rem;
     width: 23rem;

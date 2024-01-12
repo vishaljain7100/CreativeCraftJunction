@@ -74,7 +74,6 @@ router.get('/auth/google/callback',
     ),
     (req, res) => {
         req.flash("success", "You loggedIn SuccessFully")
-        console.log(req.flash())
         res.redirect("/")
     }
 );

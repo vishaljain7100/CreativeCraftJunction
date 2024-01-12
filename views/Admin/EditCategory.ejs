@@ -8,25 +8,27 @@
             <form action="/Admin/Category/Edit/<%= Categorys[0].categoryId %>?_method=PATCH" method="post" novalidate
                 class="needs-validation" id="editForm">
                 <div id="slide">
-                    <div class="card" style="width: 18rem;">
-                        <img src="/uploads/<%= Categorys[0].image %>" class="card-img-top" alt="...">
+                    <div class="card mb-4">
+                        <img src="/uploads/<%= Categorys[0].image %>" style="width: 18rem; height: 18rem;" class="card-img-top rounded-2" alt="...">
                     </div>
                 </div>
-                <div class="details col-md-6">
-                    <div class="mb-4">
-                        <label for="title" class="form-label">Title</label>
-                        <input required type="text" class="form-control" value="<%= Categorys[0].categoryName %>"
-                            name="category[categoryName]" id="title">
+                <div class="details col-md-6" style="text-align: center;">
+                    <div class="mb-3 form-floating">
+                        <input required type="text" value="<%= Categorys[0].categoryName %>" class="form-control" name="category[categoryName]" id="title"
+                            placeholder="Title">
+                        <label for="title" class="form-label pl-1"><img width="25" height="25"
+                                src="https://img.icons8.com/fluency/48/tag--v1.png" alt="tag--v1" />&nbsp; Title</label>
                         <div class="invalid-feedback">
                             Invalid Title
                         </div>
                     </div>
-                    <div class="mb-4">
-                        <label for="id" class="form-label">Id</label>
-                        <input required type="number" class="form-control" value="<%= Categorys[0].categoryId %>"
-                            name="category[categoryId]" id="id">
+                    <div class="mb-3 form-floating">
+                        <input required type="number" class="form-control"  value="<%= Categorys[0].categoryId %>" name="category[categoryId]" id="CategoryId"
+                            placeholder="Category Id">
+                        <label for="CategoryId" class="form-label pl-1"><img width="25" height="25"
+                                src="https://img.icons8.com/color/48/pen.png" alt="pen" /> &nbsp;Category Id</label>
                         <div class="invalid-feedback">
-                            Invalid id
+                            Invalid Category Id
                         </div>
                     </div>
                     <button class="button-33" role="button">ADD</button>

@@ -9,8 +9,6 @@ const dotenv = require("dotenv")
 const fast2sms = require("fast2sms")
 const Admin = require("../module/Admin")
 
-
-
 //verification for otp
 module.exports.AdminLogin = wrapAsync(async (req, res, next) => {
     const AdminDetails = req.signedCookies

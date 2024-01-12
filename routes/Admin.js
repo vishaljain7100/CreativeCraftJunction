@@ -73,25 +73,25 @@ router.post("/Category",
 )
 
 //category view route
-router.get('/ViewCategory', async (req, res) => {
+router.get('/ViewCategory',AdminExist, async (req, res) => {
     const AllCategorys = await category.find({})
     res.render("Admin/showCategory.ejs", { AllCategorys })
 })
 
 //Cateogory Edit
-router.get('/Category/Edit/:id', async (req, res) => {
+router.get('/Category/Edit/:id',AdminExist, async (req, res) => {
     const { id } = req.params
     const Categorys = await category.find({ categoryId: id })
     res.render("Admin/EditCategory.ejs", { Categorys })
 })
 
 //Category Edit post
-router.post("/Category/Edit/:id", CategorySchemaValidation, editCategory)
+router.post("/Category/Edit/:id",AdminExist, CategorySchemaValidation, editCategory)
 
 //Delete Category 
-router.get("/Category/Delete/:id", wrapAsync(async (req, res) => {
+router.get("/Category/Delete/:id",AdminExist, wrapAsync(async (req, res) => {
     const { id } = req.params
-    await category.findOneAndDelete({ categoryId: id }).then(res => console.log(res))
+    await category.findOneAndDelete({ categoryId: id })
     req.flash("success", "Category Deleted Successfully")
     res.redirect('/Admin/ViewCategory')
 }))
@@ -110,19 +110,20 @@ router.post("/Product",
 )
 
 //Product view route
-router.get('/ViewProduct', async (req, res) => {
+router.get('/ViewProduct',AdminExist, async (req, res) => {
     const AllProducts = await post.find({})
     res.render("Admin/showProduct.ejs", { AllProducts })
 })
 
 // Product Edit
-router.get('/Product/Edit/:id', async (req, res) => {
+router.get('/Product/Edit/:id',AdminExist, async (req, res) => {
     const { id } = req.params
     const Products = await post.find({ productId: id })
     res.render("Admin/EditProduct.ejs", { Products })
 })
 
 router.post("/Product/Edit/:id",
+AdminExist,
     upload.fields([
         { name: "listing[newImage1]", maxCount: 1 },
         { name: "listing[newImage2]", maxCount: 1 },
@@ -132,7 +133,7 @@ router.post("/Product/Edit/:id",
 );
 
 //Delete Product 
-router.get("/Product/Delete/:id", wrapAsync(async (req, res) => {
+router.get("/Product/Delete/:id",AdminExist, wrapAsync(async (req, res) => {
     const { id } = req.params
     await post.findOneAndDelete({ productId: id })
     req.flash("success", "Product Deleted Successfully")
