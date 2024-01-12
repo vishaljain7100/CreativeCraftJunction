@@ -119,15 +119,17 @@ router.get('/ViewProduct', async (req, res) => {
 router.get('/Product/Edit/:id', async (req, res) => {
     const { id } = req.params
     const Products = await post.find({ productId: id })
-    console.log(Products)
     res.render("Admin/EditProduct.ejs", { Products })
 })
 
-//Product Edit post
 router.post("/Product/Edit/:id",
-    upload.array("listing[newImage]", 3),
+    upload.fields([
+        { name: "listing[newImage1]", maxCount: 1 },
+        { name: "listing[newImage2]", maxCount: 1 },
+        { name: "listing[newImage3]", maxCount: 1 }
+    ]),
     editProduct
-)
+);
 
 //Delete Product 
 router.get("/Product/Delete/:id", wrapAsync(async (req, res) => {
