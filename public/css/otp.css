@@ -15,6 +15,15 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.otpdiv form {
+    width: 25rem;
+    border: 5px solid;
+    border: 5px solid #005dda !important;
+    border-radius: 5% !important;
 }
 
 #error-message {
@@ -39,7 +48,7 @@ p {
 }
 
 .otpdiv input[type="number"] {
-    width: 10vw;
+    width: 40px;
     height: 40px;
     margin: 5px;
     text-align: center;
@@ -48,3 +57,10 @@ p {
     border-radius: 4px;
 }
 
+input{
+    border: 2px solid #0000003d !important;
+}
+
+.otpdiv hr{
+    width: 80%;
+}
