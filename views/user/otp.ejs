@@ -3,22 +3,28 @@
     <div class="otpdiv">
         <p id="error-message" style="color: red;"></p>
         <form action="/user/<%= link %>/Verfication" method="post">
-            <% if(error.length !==0){ %>
-                <%= error %>
-                    <% } %>
-                        <h1>Enter your 4-digit OTP</h1>
-                        <p>An OTP has been sent to
-                            <%= ContactNumber %>
-                        </p>
-                        <div class="input">
-                            <input type="text" name="user[ContactNumber]" value="<%= ContactNumber%>" hidden>
-                            <input type="text" name="user[email]" value="<%= email %>" hidden>
-                            <input type="number" id="otp-input" maxlength="1" autocomplete="on" name="otp">
-                            <input type="number" id="otp-input" maxlength="1" autocomplete="on" name="otp">
-                            <input type="number" id="otp-input" maxlength="1" autocomplete="on" name="otp">
-                            <input type="number" id="otp-input" maxlength="1" autocomplete="on" name="otp">
-                            <br>
-                        </div>
-                        <button class="btn btn-outline-warning" id="submit-btn">Verify</button>
+            <img src="/image/symbol.png" alt="logo.png" height="50vh" class="rounded-circle mb-3">
+            <h5 class="title">Wellcome to Creative Craft Juction</h5>
+            <hr>
+
+            <h1>Enter your 4-digit OTP</h1>
+            <p>An OTP has been sent to your ContactNumber
+            </p>
+            <div class="input">
+                <input required type="number" id="otp-input" maxlength="1" autocomplete="on" name="otp">
+                <input required type="number" id="otp-input" maxlength="1" autocomplete="on" name="otp">
+                <input required type="number" id="otp-input" maxlength="1" autocomplete="on" name="otp">
+                <input required type="number" id="otp-input" maxlength="1" autocomplete="on" name="otp">
+                <br>
+            </div>
+            <span style="color: red; font-weight: 500;" class="mb-4">
+                <%if(LoginError.length !==0){ %>
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <%= LoginError %>
+                        <% }%>
+            </span>
+            <button class="button-18 mb-4" role="button">
+                <span class="text">Verfy</span>
+            </button>
         </form>
     </div>

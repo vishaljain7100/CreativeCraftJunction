@@ -1,8 +1,10 @@
-<% layout("/Admin/AdminLayout/boilerplate.ejs") %>
-
-    <body>
-        <form action="/Admin/Category" method="post" class="needs-validation" novalidate>
-            <div class="row col-8 offset-2 " style="margin-top: 5rem;margin-bottom: 5rem; justify-content: center;">
+<body>
+    <% layout("/Admin/AdminLayout/boilerplate.ejs") %>
+        <h3 id="Category-text">
+            Add Category
+        </h3>
+        <form action="/Admin/Category" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <div class="row col-8 offset-2 " style="justify-content: center;">
                 <div class="mb-3 form-floating">
                     <input required type="text" class="form-control" name="category[categoryName]" id="title"
                         placeholder="Title">
@@ -13,7 +15,7 @@
                     </div>
                 </div>
                 <div class="mb-3 form-floating">
-                    <input required type="text" class="form-control" name="category[categoryId]" id="CategoryId"
+                    <input required type="number" class="form-control" name="category[categoryId]" id="CategoryId"
                         placeholder="Category Id">
                     <label for="CategoryId" class="form-label pl-1"><img width="25" height="25"
                             src="https://img.icons8.com/color/48/pen.png" alt="pen" /> &nbsp;Category Id</label>
@@ -22,12 +24,13 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="category[image]" id="Image" placeholder="Image">
+                    <input type="file" class="form-control" name="image" id="Image" placeholder="Image">
                     <div class="invalid-feedback">
                         Invalid Image
                     </div>
                 </div>
-                <button class="btn add-new btn-outline-warning">Add</button>
+                <!-- HTML !-->
+                <button class="button-33" role="button">ADD</button>
             </div>
         </form>
-    </body>
+</body>

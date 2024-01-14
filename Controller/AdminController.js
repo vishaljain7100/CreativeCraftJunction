@@ -6,10 +6,7 @@ const axios = require("axios")
 const otpGenerator = require("otp-generator")
 const OtpSchema = require("../module/otp")
 const dotenv = require("dotenv")
-const fast2sms = require("fast2sms")
 const Admin = require("../module/Admin")
-
-
 
 //verification for otp
 module.exports.AdminLogin = wrapAsync(async (req, res, next) => {

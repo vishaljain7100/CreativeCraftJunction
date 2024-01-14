@@ -9,19 +9,27 @@ const post = require("../module/post")
 const category = require("../module/category")
 const Admin = require("../module/Admin")
 const { AdminLoginVerficaiton, AdminLogin } = require("../Controller/AdminController")
-const { AdminExist, LogOutAdmin } = require("../middlewares")
+const fs = require("fs")
+const { AddProduct, AddCategory, editCategory, editProduct } = require("../Controller/ProductController")
 
 // multer middleware to storge the db in upload folder
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads')
+        const dir = "./uploads"
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir)
+        }
+        cb(null, dir)
     },
     filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        const uniqueSuffix = Date.now()
         cb(null, file.fieldname + '-' + uniqueSuffix + ".png")
     }
 })
-const upload = multer({ storage: storage })
+
+const upload = multer({
+    storage: storage
+})
 
 //schema validiton function
 const SchemaValidation = (req, res, next) => {
@@ -46,56 +54,87 @@ const CategorySchemaValidation = (req, res, next) => {
 }
 
 //Admin route
-router.get("/", AdminExist, wrapAsync(async (req, res, next) => {
+router.get("/", wrapAsync(async (req, res, next) => {
     res.render("Admin/Admin.ejs")
 }))
 
 // Add Category (get form route)
-router.get("/Category", AdminExist, (req, res, next) => {
+router.get("/Category", (req, res, next) => {
     res.render("Admin/AddCategory")
 })
 
 // Add Category (Post route)
 router.post("/Category",
-    AdminExist,
-    CategorySchemaValidation,
     upload.single("image"),
-    wrapAsync(async (req, res, next) => {
-        const categoryDetails = req.body.category
-        const newCategory = await new category(categoryDetails)
-        await newCategory.save()
-        const AllCategorys = await category.find()
-        res.render("Admin/showCategory.ejs", { AllCategorys })
-    }))
+    CategorySchemaValidation,
+    AddCategory
+)
 
+//category view route
+router.get('/ViewCategory', async (req, res) => {
+    const AllCategorys = await category.find({})
+    res.render("Admin/showCategory.ejs", { AllCategorys })
+})
+
+//Cateogory Edit
+router.get('/Category/Edit/:id', async (req, res) => {
+    const { id } = req.params
+    const Categorys = await category.find({ categoryId: id })
+    res.render("Admin/EditCategory.ejs", { Categorys })
+})
+
+//Category Edit post
+router.post("/Category/Edit/:id", CategorySchemaValidation, editCategory)
+
+//Delete Category 
+router.get("/Category/Delete/:id", wrapAsync(async (req, res) => {
+    const { id } = req.params
+    await category.findOneAndDelete({ categoryId: id })
+    req.flash("success", "Category Deleted Successfully")
+    res.redirect('/Admin/ViewCategory')
+}))
 
 // Add Product (get form route)
-router.get("/Product", AdminExist, wrapAsync(async (req, res, next) => {
+router.get("/Product", wrapAsync(async (req, res, next) => {
     res.render('Admin/Addproduct.ejs')
 }))
 
 // Add Product (Post route)
 router.post("/Product",
-    AdminExist,
+    upload.array("listing[image]", 3),
     SchemaValidation,
-    upload.fields([
-        { name: "listing[image1]", maxCount: 1 },
-        { name: "listing[image2]", maxCount: 1 },
-        { name: "listing[image3]", maxCount: 1 },
-    ]),
-    wrapAsync(async (req, res, next) => {
-        const files = req.files
-        console.log(files)
+    AddProduct
+)
 
-        // console.log(images)
-        const postDetails = req.body.listing
-        console.log(postDetails)
-        const newPost = await new post(postDetails)
-        // newPost.save()
-        //     .then(res => console.log(res))
-        //     .catch(err => console.log(err))
-        // // res.redirect('/Admin')
-    }))
+//Product view route
+router.get('/ViewProduct', async (req, res) => {
+    const AllProducts = await post.find({})
+    res.render("Admin/showProduct.ejs", { AllProducts })
+})
+
+// Product Edit
+router.get('/Product/Edit/:id', async (req, res) => {
+    const { id } = req.params
+    const Products = await post.find({ productId: id })
+    res.render("Admin/EditProduct.ejs", { Products })
+})
+
+router.post("/Product/Edit/:id",
+    upload.fields([
+        { name: "listing[newImage1]", maxCount: 1 },
+        { name: "listing[newImage2]", maxCount: 1 },
+        { name: "listing[newImage3]", maxCount: 1 }
+    ]),
+    editProduct
+);
+
+//Delete Product 
+router.get("/Product/Delete/:id", wrapAsync(async (req, res) => {
+    const { id } = req.params
+    await post.findOneAndDelete({ productId: id })
+    req.flash("success", "Product Deleted Successfully")
+    res.redirect('/Admin/ViewProduct')
+}))
 
 //generating OTP for Admin
 router.get("/login", AdminLogin)
@@ -104,7 +143,7 @@ router.get("/login", AdminLogin)
 router.post("/Login/Verificaiton", AdminLoginVerficaiton)
 
 //Admin Logout route
-router.get("/logout", AdminExist, LogOutAdmin, wrapAsync(async (req, res) => {
+router.get("/logout", wrapAsync(async (req, res) => {
     res.redirect("/")
 }))
 

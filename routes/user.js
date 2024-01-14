@@ -5,7 +5,6 @@ const { user } = require("../Schema")
 const passport = require("passport")
 const wrapAsync = require("../utility/wrapAsync")
 const { signUp, verfiySignUp, login, LoginVerification, AdminLoginVerficaiton } = require('../Controller/userController')
-const { tokenAuth, LogOutFun } = require("../middlewares")
 const Admin = require("../module/Admin")
 
 //user validation funciton
@@ -53,6 +52,14 @@ router.get("/login", (req, res) => {
     res.render("user/login")
 })
 
+router.get("/otp", wrapAsync(async (req, res, next) => {
+    if (req.session.user["username"]) {
+        res.render("user/otp.ejs", { link: "signUp" })
+    } else {
+        res.render("user/otp.ejs", { link: "login" })
+    }
+}))
+
 //login OTP verification
 router.post("/login", AdCheck, login)
 
@@ -60,8 +67,14 @@ router.post("/login", AdCheck, login)
 router.post("/login/Verfication", LoginVerification)
 
 //logout api
-router.get("/logOut", LogOutFun, (req, res) => {
-    res.redirect("/")
+router.get("/logOut", (req, res, next) => {
+    req.logout(err => {
+        if (err) {
+            return next(err)
+        }
+        req.flash("success", "You Logout Successfully")
+        res.redirect("/")
+    })
 })
 
 //login through google
@@ -74,7 +87,6 @@ router.get('/auth/google/callback',
     ),
     (req, res) => {
         req.flash("success", "You loggedIn SuccessFully")
-        console.log(req.flash())
         res.redirect("/")
     }
 );

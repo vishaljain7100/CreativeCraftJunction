@@ -1,0 +1,43 @@
+<body>
+    <!-- navbar file -->
+    <% layout("/Admin/AdminLayout/boilerplate.ejs") %>
+        <h3 id="Category-text">
+            Product's
+        </h3>
+        <div class="Category-Postcontainer">
+            <% for(let i=0; i<AllProducts.length; i++){ %>
+                <div class="card">
+                    <div class="picture picture-category">
+                        <img src="/uploads/<%= AllProducts[i].image1 %>" class="card-img-top" alt="img">
+                    </div>
+                    <div class="aboutProduct-category">
+                        <h5 class="Product-title mb-3">
+                            <img width="20" height="20" src="https://img.icons8.com/fluency/48/collect.png"
+                                alt="collect" />
+                            <%= AllProducts[i].title %>
+                        </h5>
+                        <div class="buttons">
+                            <form action="/Admin/Product/Edit/<%=AllProducts[i].productId%> " method="get">
+                                <button class="button-1 edit-btn" role="button">
+                                    <span class="button-1-shadow"></span>
+                                    <span class="button-1-edge"></span>
+                                    <span class="button-1-front text">
+                                        Edit
+                                    </span>
+                                </button>
+                            </form>
+                            <form action="/Admin/Product/Delete/<%= AllProducts[i].productId %>">
+                                <button class="button-1" role="button">
+                                    <span class="button-1-shadow"></span>
+                                    <span class="button-1-edge"></span>
+                                    <span class="button-1-front text">
+                                        Delete
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+</body>

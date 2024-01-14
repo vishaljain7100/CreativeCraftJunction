@@ -11,7 +11,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <%if(user==null){ %>
+                <%if(!currUser){ %>
                     <li class="nav-item">
                         <a class="nav-link" href="/user/signup"><img width="25" height="25"
                                 src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/external-user-medical-kiranshastry-solid-kiranshastry.png"
@@ -23,7 +23,7 @@
                                 alt="login-rounded-right" />Login</a>
                     </li>
                     <% }%>
-                        <%if(user !=null){ %>
+                        <%if(currUser){ %>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="fa-solid fa-user"></i>&nbsp;Profile</a>
                             </li>

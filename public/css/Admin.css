@@ -1,0 +1,13 @@
+.Admin-main {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card{
+    border-bottom: 5px solid #3875ca ;
+}
