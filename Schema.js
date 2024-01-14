@@ -12,6 +12,7 @@ module.exports = {
     }).required(),
 
     user: Joi.object({
+        username:Joi.string().required(),
         ContactNumber: Joi.number().required(),
         email: Joi.string().required(),
     }).required(),

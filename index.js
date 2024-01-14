@@ -9,8 +9,6 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const postRoutes = require("./routes/post")
 const AdminRoutes = require("./routes/Admin")
-const data = require("./init/data")
-const categoryData = require("./init/categoryData")
 const flash = require("connect-flash")
 const session = require("express-session")
 const UserRoutes = require("./routes/user")
@@ -21,6 +19,7 @@ const post = require("./module/post")
 const category = require("./module/category")
 const User = require("./module/user")
 const Admin = require("./module/Admin")
+const LocalStrategy = require("passport-local")
 require("./auth")
 
 const log = console.log
@@ -53,9 +52,6 @@ app.use(express.urlencoded({ extended: true }))
 const db_url = process.env.DATABASE_URL
 app.use(cookieParser("This is the admin"));
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 main()
     .then(res => console.log("Mongodb is connected"))
     .catch(err => console.log(err))
@@ -64,13 +60,6 @@ async function main() {
     await mongoose.connect(db_url)
 }
 
-//checking user is login or not
-app.use((req, res, next) => {
-    if (res.locals.user === undefined || res.locals.user === null) {
-        res.locals.user = null
-        next()
-    }
-})
 
 
 //flash middle ware for message sending 
@@ -79,6 +68,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error')
     res.locals.LoginError = req.flash('LoginError')
     res.locals.SignUpError = req.flash('SignUpError')
+    res.locals.currUser = req.user;
     next()
 })
 

@@ -9,7 +9,6 @@ const post = require("../module/post")
 const category = require("../module/category")
 const Admin = require("../module/Admin")
 const { AdminLoginVerficaiton, AdminLogin } = require("../Controller/AdminController")
-const { AdminExist, LogOutAdmin } = require("../middlewares")
 const fs = require("fs")
 const { AddProduct, AddCategory, editCategory, editProduct } = require("../Controller/ProductController")
 
@@ -55,90 +54,56 @@ const CategorySchemaValidation = (req, res, next) => {
 }
 
 //Admin route
-router.get("/", AdminExist, wrapAsync(async (req, res, next) => {
+router.get("/", wrapAsync(async (req, res, next) => {
     res.render("Admin/Admin.ejs")
 }))
 
 // Add Category (get form route)
-router.get("/Category", AdminExist, (req, res, next) => {
+router.get("/Category", (req, res, next) => {
     res.render("Admin/AddCategory")
 })
 
 // Add Category (Post route)
 router.post("/Category",
     AdminExist,
-    upload.single("image"),
     CategorySchemaValidation,
-    AddCategory
-)
+    upload.single("image"),
+    wrapAsync(async (req, res, next) => {
+        const categoryDetails = req.body.category
+        const newCategory = await new category(categoryDetails)
+        await newCategory.save()
+        const AllCategorys = await category.find()
+        res.render("Admin/showCategory.ejs", { AllCategorys })
+    }))
 
-//category view route
-router.get('/ViewCategory',AdminExist, async (req, res) => {
-    const AllCategorys = await category.find({})
-    res.render("Admin/showCategory.ejs", { AllCategorys })
-})
-
-//Cateogory Edit
-router.get('/Category/Edit/:id',AdminExist, async (req, res) => {
-    const { id } = req.params
-    const Categorys = await category.find({ categoryId: id })
-    res.render("Admin/EditCategory.ejs", { Categorys })
-})
-
-//Category Edit post
-router.post("/Category/Edit/:id",AdminExist, CategorySchemaValidation, editCategory)
-
-//Delete Category 
-router.get("/Category/Delete/:id",AdminExist, wrapAsync(async (req, res) => {
-    const { id } = req.params
-    await category.findOneAndDelete({ categoryId: id })
-    req.flash("success", "Category Deleted Successfully")
-    res.redirect('/Admin/ViewCategory')
-}))
 
 // Add Product (get form route)
-router.get("/Product", AdminExist, wrapAsync(async (req, res, next) => {
+router.get("/Product", wrapAsync(async (req, res, next) => {
     res.render('Admin/Addproduct.ejs')
 }))
 
 // Add Product (Post route)
 router.post("/Product",
     AdminExist,
-    upload.array("listing[image]", 3),
     SchemaValidation,
-    AddProduct
-)
-
-//Product view route
-router.get('/ViewProduct',AdminExist, async (req, res) => {
-    const AllProducts = await post.find({})
-    res.render("Admin/showProduct.ejs", { AllProducts })
-})
-
-// Product Edit
-router.get('/Product/Edit/:id',AdminExist, async (req, res) => {
-    const { id } = req.params
-    const Products = await post.find({ productId: id })
-    res.render("Admin/EditProduct.ejs", { Products })
-})
-
-router.post("/Product/Edit/:id",
-AdminExist,
     upload.fields([
         { name: "listing[newImage1]", maxCount: 1 },
         { name: "listing[newImage2]", maxCount: 1 },
         { name: "listing[newImage3]", maxCount: 1 }
     ]),
-    editProduct
-);
+    wrapAsync(async (req, res, next) => {
+        const files = req.files
+        console.log(files)
 
-//Delete Product 
-router.get("/Product/Delete/:id",AdminExist, wrapAsync(async (req, res) => {
-    const { id } = req.params
-    await post.findOneAndDelete({ productId: id })
-    req.flash("success", "Product Deleted Successfully")
-    res.redirect('/Admin/ViewProduct')
-}))
+        // console.log(images)
+        const postDetails = req.body.listing
+        console.log(postDetails)
+        const newPost = await new post(postDetails)
+        // newPost.save()
+        //     .then(res => console.log(res))
+        //     .catch(err => console.log(err))
+        // // res.redirect('/Admin')
+    }))
 
 //generating OTP for Admin
 router.get("/login", AdminLogin)
@@ -147,7 +112,7 @@ router.get("/login", AdminLogin)
 router.post("/Login/Verificaiton", AdminLoginVerficaiton)
 
 //Admin Logout route
-router.get("/logout", AdminExist, LogOutAdmin, wrapAsync(async (req, res) => {
+router.get("/logout", wrapAsync(async (req, res) => {
     res.redirect("/")
 }))
 
