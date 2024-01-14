@@ -7,8 +7,6 @@ const axios = require("axios")
 const otpGenerator = require("otp-generator")
 const OtpSchema = require("../module/otp")
 const dotenv = require("dotenv")
-const fast2sms = require("fast2sms")
-const { AdCheck } = require("../middlewares")
 
 
 dotenv.config()
@@ -18,10 +16,17 @@ const accountSid = process.env.Twilio_accoundSid
 
 //sending otp to user
 module.exports.signUp = wrapAsync(async (req, res) => {
-    const { ContactNumber, email } = req.body.user
+    const { ContactNumber, username, email } = req.body.user
     //if user exist then login page redirect
-    const userExist = await User.find({ ContactNumber: ContactNumber })
-    if (userExist.length !== 0) {
+    const userExistWithNumber = await User.find({ ContactNumber: ContactNumber })
+    if (userExistWithNumber.length !== 0) {
+        req.flash('SignUpError', "Account Exist! Please login")
+        res.redirect("/user/login")
+        next()
+    }
+
+    const userExistWithEmail = await User.find({ email: email })
+    if (userExistWithEmail.length !== 0) {
         req.flash('SignUpError', "Account Exist! Please login")
         res.redirect("/user/login")
         next()
@@ -39,14 +44,15 @@ module.exports.signUp = wrapAsync(async (req, res) => {
 
     const result = await otp.save()
     console.log(OTP)
+    //saving user temp for details to be verfied in otp page
+    req.session.user = { ContactNumber, username, email }
 
-    const signUp = "signUp"
-    res.render("user/otp.ejs", { ContactNumber, email, link: signUp })
+    res.render("user/otp.ejs", { link: "signUp" })
 })
 
 //verify otp sended by user
 module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
-    const { ContactNumber, email } = req.body.user
+    const { ContactNumber, email, username } = req.session.user
     const { otp } = req.body
     const NumberOtp = otp.join("")
 
@@ -61,24 +67,22 @@ module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
     const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
     //otp verification and saving users after verification
     if (rightOtpFind.number === ContactNumber && validUser) {
-        const newUser = await new User({ email, ContactNumber })
-        await newUser.save()
-        const token = newUser.generateJWT()
-        await token.then((tokenValue) => {
-            //storing token in cookie storage
-            res.cookie("jwt", `${tokenValue}`, {
-                httpOnly: true,
-                expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-                maxAge: 7 * 24 * 60 * 60 * 1000
-            })
+        const newUser = await new User({ email, ContactNumber, username })
+        const reg = await User.register(newUser, ContactNumber)
+
+        req.login(reg, err => {
+            if (err) {
+                console.log(err)
+            }
+            req.flash("success" , "You loggedIn Successfully")
+            res.redirect("/")
         })
         //deleting otp after user registor
         const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number })
         res.redirect("/")
     } else {
-        req.flash('error', "Your OTP Was Wrong")
-        await res.render("user/otp.ejs", { ContactNumber, email, link: "signUp" })
-        // res.redirect("/")
+        req.flash('LoginError', "INVALID OTP")
+        res.redirect("/user/otp")
     }
 })
 
