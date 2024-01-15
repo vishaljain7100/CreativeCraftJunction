@@ -52,6 +52,23 @@ app.use(express.urlencoded({ extended: true }))
 const db_url = process.env.DATABASE_URL
 app.use(cookieParser("This is the admin"));
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findById(id);
+        done(null, user);
+    } catch (err) {
+        done(err, null);
+    }
+});
+
+
 main()
     .then(res => console.log("Mongodb is connected"))
     .catch(err => console.log(err))
@@ -59,7 +76,6 @@ main()
 async function main() {
     await mongoose.connect(db_url)
 }
-
 
 
 //flash middle ware for message sending 
