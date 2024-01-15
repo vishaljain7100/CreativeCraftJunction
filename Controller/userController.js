@@ -65,6 +65,7 @@ module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
 
     const rightOtpFind = otpHolder[otpHolder.length - 1]
     const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
+    console.log(rightOtpFind.number, ContactNumber, NumberOtp, rightOtpFind.otp)
     //otp verification and saving users after verification
     if (rightOtpFind.number === ContactNumber && validUser) {
         const newUser = await new User({ email, ContactNumber, username })
@@ -74,7 +75,7 @@ module.exports.verfiySignUp = wrapAsync(async (req, res, next) => {
             if (err) {
                 console.log(err)
             }
-            req.flash("success" , "You loggedIn Successfully")
+            req.flash("success", "You loggedIn Successfully")
             res.redirect("/")
         })
         //deleting otp after user registor
@@ -105,14 +106,13 @@ module.exports.login = wrapAsync(async (req, res, next) => {
     console.log(OTP)
 
     const ContactNumber = userExistInDb[0].ContactNumber
-    const email = userExistInDb[0].email
-
-    res.render("user/otp.ejs", { ContactNumber, email, link: "login" })
+    req.session.user = { ContactNumber }
+    res.render("user/otp.ejs", { link: "login" })
 })
 
 //otp verification with db and generating token for valid User
 module.exports.LoginVerification = wrapAsync(async (req, res, next) => {
-    const { ContactNumber } = req.body.user
+    const { ContactNumber } = req.session.user
     const { otp } = req.body
     const NumberOtp = otp.join("")
     //checking otp is expired or not
@@ -124,23 +124,24 @@ module.exports.LoginVerification = wrapAsync(async (req, res, next) => {
 
     const rightOtpFind = otpHolder[otpHolder.length - 1]
     const validUser = await bcrypt.compare(NumberOtp, rightOtpFind.otp)
-    if (rightOtpFind.number === ContactNumber && NumberOtp === rightOtpFind.otp) {
+    console.log(rightOtpFind.number , ContactNumber.toString(), NumberOtp, rightOtpFind.otp)
+    
+    if (rightOtpFind.number === ContactNumber.toString() && validUser) {
         const user = await User.find({ ContactNumber: ContactNumber })
-        const token = user[0].generateJWT()
-        await token.then((tokenValue) => {
-            //storing token in cookie storage
-            res.cookie("jwt", `${tokenValue}`, {
-                httpOnly: true,
-                expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-                maxAge: 7 * 24 * 60 * 60 * 1000
-            })
-        })
-        //deleting otp after user registor
-        const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number })
-        res.redirect("/")
+        console.log(user)
+        // Passport's login function to serialize the user
+        req.login(user, async (err) => {
+            if (err) {
+                return next(err);
+            }
+            // Deleting OTP after successful login
+            const OTPDelete = await OtpSchema.deleteMany({ number: rightOtpFind.number });
+            // Redirect or send a response as needed
+            res.redirect('/');
+        });
     } else {
-        req.flash("error", "You Entered Wrong OTP")
-        res.redirect("/")
+        req.flash("LoginError", "INVALID OTP")
+        res.redirect("/user/otp")
     }
 })
 
