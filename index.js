@@ -68,7 +68,6 @@ passport.deserializeUser(async (id, done) => {
     }
 });
 
-
 main()
     .then(res => console.log("Mongodb is connected"))
     .catch(err => console.log(err))
@@ -76,7 +75,6 @@ main()
 async function main() {
     await mongoose.connect(db_url)
 }
-
 
 
 //flash middle ware for message sending 
